@@ -6,7 +6,7 @@
 <H3 TEXT-ALIGN='CENTER'><b><FONT FACE="TIMES" SIZE="1"><p>Gerência</p></font></b></H3>
 
 José Clodoalves (Configuração/Tester) --> jrjcsj@gmail.com;<br>
-Mário Gomes(ScrumMaster/PO) --> mauriokk@gmail.com;<br>
+Mário Gomes(Scrum Master/PO) --> mauriokk@gmail.com;<br>
 Rafaella Leandra (Qualidade/Teste) --> rafaella-pe@hotmail.com
 <hr>
 <br>
