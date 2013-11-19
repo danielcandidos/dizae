@@ -5,17 +5,17 @@
 
 <H3 TEXT-ALIGN='CENTER'><b><FONT FACE="TIMES" SIZE="1"><p>Gerência</p></font></b></H3>
 
-José Clodoalves (Carpina) (...)jrjcsj@gmail.com --> Configuração/Teste;<br>
-Mário Gomes(...) mauriokk@gmail.com --> ScrumMaster/PO;<br>
-Rafaella Leandra (...) rafaella-pe@hotmail.com --> Qualidade/Teste
+José Clodoalves (Carpina) (Configuração/Tester)jrjcsj@gmail.com;<br>
+Mário Gomes(ScrumMaster/PO) mauriokk@gmail.com;<br>
+Rafaella Leandra (Qualidade/Teste) rafaella-pe@hotmail.com
 <hr>
 <br>
 
 <H3 TEXT-ALIGN='CENTER'><b><FONT FACE="TIMES" SIZE="1"><p>Processos</p></font></b></H3>
 
-Carlos (Dola) (...) dolalima@gmail.com --> Desenvolvedor;<br>
-Rodolfo Bispo (...) rodolfo.ufrpe@gmail.com --> Desenvolvedor;<br>
-Bruno Roberto(...) brobertofs@gmail.com --> Designer;<br>
-Vinicius Acioly (...) vinicius.acioly@hotmail.com --> Designer;<br>
-Guilherme Lapa (...) guilapabsi@gmail.com --> DBA.<br>
+Carlos (Dola) (Desenvolvedor) dolalima@gmail.com;<br>
+Rodolfo Bispo (Desenvolvedor) rodolfo.ufrpe@gmail.com;<br>
+Bruno Roberto(Designer) brobertofs@gmail.com;<br>
+Vinicius Acioly (Designer) vinicius.acioly@hotmail.com;<br>
+Guilherme Lapa (DBA) guilapabsi@gmail.com.<br>
 <hr>
