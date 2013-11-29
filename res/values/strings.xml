@@ -4,5 +4,11 @@
     <string name="app_name">Dizaê</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="login">Entrar</string>
+    <string name="cadastro">Cadastrar-se</string>
+    <string name="digprob">Qual o seu problema?</string>
+    <string name="texprob">Descreva melhor o seu problema.</string>
+    
+    <string name="nomeusuario">Digite seu nome completo.</string>
 
 </resources>
