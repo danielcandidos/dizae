@@ -12,10 +12,13 @@
     tools:context=".HomeActivity" >
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/categorias"
+        style="@array/categorias_array"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/categorialista"
+        android:entries="@array/categorias_array"
         android:gravity="top|center_vertical" />
 
     <EditText
@@ -37,5 +40,6 @@
         android:ems="10"
         android:hint="@string/texprob"
         android:inputType="textMultiLine" />
+    
 
 </LinearLayout>
