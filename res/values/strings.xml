@@ -7,7 +7,7 @@
     <string name="login">Entrar</string>
     <string name="cadastro">Cadastrar-se</string>
     
-    <string name="email">E-mail</string>
+    <string name="home">Página Inicial</string><string name="email">E-mail</string>
     <string name="senha">Senha</string>
     <string name="digitarnome">Digite seu nome completo.</string>
     <string name="digitarcpf">Digite seu CPF.</string>
@@ -19,6 +19,13 @@
     
     <string name="cancelar">Cancelar</string>
     <string name="voltar">Voltar</string>
+    <string name="problema">Qual o seu problema?</string>
+    <string name="verlista">Visualizar lista de problemas</string><string name="categorias">Selecione uma categoria</string><string name="descricao">Descreva aqui sua reclamação</string>
+    
+    <string name="fotovideo">Anexar Foto/Vídeo</string>
+    <string name="reportar">Reportar problema</string>
+    
+    
     
 
 </resources>
