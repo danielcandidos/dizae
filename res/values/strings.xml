@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Dizae</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="login">Entrar</string>
+    <string name="cadastro">Cadastrar-se</string>
+    
+    <string name="email">E-mail</string>
+    <string name="senha">Senha</string>
+    <string name="digitarnome">Digite seu nome completo.</string>
+    <string name="digitarcpf">Digite seu CPF.</string>
+    <string name="digitaremail">Digite seu e-mail.</string>
+    <string name="digitarsenha">Digite uma senha.</string>
+    <string name="confirmsenha">Confirme sua senha.</string>
+    
+    <string name="aviso1">Este e-mail será seu login.*</string>
+    
+    <string name="cancelar">Cancelar</string>
+    <string name="voltar">Voltar</string>
+    
+
+</resources>
