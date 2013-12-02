@@ -11,6 +11,8 @@
     <string name="senha">Senha</string>
     <string name="digitarnome">Digite seu nome completo.</string>
     <string name="digitarcpf">Digite seu CPF.</string>
+    <string name="digitarend">Digite seu endereço.</string>
+    <string name="digitarnumres">Número.</string>
     <string name="digitaremail">Digite seu e-mail.</string>
     <string name="digitarsenha">Digite uma senha.</string>
     <string name="confirmsenha">Confirme sua senha.</string>
