@@ -7,7 +7,7 @@
     android:orientation="vertical" >
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/etNome"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -16,99 +16,95 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:hint="@string/digitarnome"
+        android:hint="@string/etNome"
         android:inputType="textPersonName" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/editText5"
-        android:layout_marginLeft="160dp"
-        android:text="@string/cancelar" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText5"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="160dp"
-        android:text="@string/cadastro" />
-
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/senha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_alignRight="@+id/editText1"
-        android:layout_below="@+id/editText1"
+        android:layout_alignLeft="@+id/etNome"
+        android:layout_alignRight="@+id/etNome"
+        android:layout_below="@+id/etNome"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:hint="@string/digitarend"
+        android:hint="@string/etCPF"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/etEndereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/senha"
+        android:layout_alignRight="@+id/senha"
+        android:layout_below="@+id/senha"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/etEndereco"
         android:inputType="textPostalAddress" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/etEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText6"
-        android:layout_alignRight="@+id/editText6"
-        android:layout_below="@+id/editText6"
+        android:layout_alignLeft="@+id/etEndereco"
+        android:layout_alignRight="@+id/etEndereco"
+        android:layout_below="@+id/etEndereco"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:hint="@string/digitarcpf"
-        android:inputType="number" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:hint="@string/digitaremail"
+        android:hint="@string/etEmail"
         android:inputType="textEmailAddress" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/tvProblema"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_below="@+id/editText3"
+        android:layout_alignLeft="@+id/etEmail"
+        android:layout_below="@+id/etEmail"
         android:text="@string/aviso1"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/etSenha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/tvProblema"
+        android:layout_alignRight="@+id/etEmail"
+        android:layout_below="@+id/tvProblema"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:hint="@string/digitarsenha"
+        android:hint="@string/etSenha"
         android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/etConSenha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText4"
-        android:layout_alignRight="@+id/editText4"
-        android:layout_below="@+id/editText4"
+        android:layout_alignLeft="@+id/etSenha"
+        android:layout_alignRight="@+id/etSenha"
+        android:layout_below="@+id/etSenha"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:hint="@string/confirmsenha"
+        android:hint="@string/etConSenha"
         android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btCadastrar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/etConSenha"
+        android:layout_below="@+id/etConSenha"
+        android:layout_marginRight="160dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/btCadastrar" />
+
+    <Button
+        android:id="@+id/btCancelar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btCadastrar"
+        android:layout_alignRight="@+id/etConSenha"
+        android:layout_marginLeft="160dp"
+        android:text="@string/btCancelar" />
 
 </RelativeLayout>
