@@ -32,6 +32,11 @@
             android:name="com.dizae.CadastroActivity"
             android:label="@string/cadastro" >
         </activity>
+        
+        <activity
+            android:name="com.dizae.HomeActivity"
+            android:label="@string/home" >
+        </activity>
     </application>
     
 
