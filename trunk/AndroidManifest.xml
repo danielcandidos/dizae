@@ -25,12 +25,12 @@
         
         <activity
             android:name="com.dizae.LoginActivity"
-            android:label="@string/login" >
+            android:label="@string/btLogin" >
         </activity>
         
         <activity
             android:name="com.dizae.CadastroActivity"
-            android:label="@string/cadastro" >
+            android:label="@string/btCadastrar" >
         </activity>
         
         <activity
