@@ -22,22 +22,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="com.dizae.LoginActivity"
             android:label="@string/btLogin" >
         </activity>
-        
         <activity
             android:name="com.dizae.CadastroActivity"
             android:label="@string/btCadastrar" >
         </activity>
-        
         <activity
             android:name="com.dizae.HomeActivity"
             android:label="@string/home" >
         </activity>
+        <activity
+            android:name="com.dizae.ListaReclActivity"
+            android:label="@string/title_activity_lista_recl" >
+        </activity>
     </application>
-    
 
 </manifest>
