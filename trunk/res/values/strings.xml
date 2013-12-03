@@ -3,37 +3,28 @@
 
     <string name="app_name">Dizaê</string>
     <string name="action_settings">Settings</string>
-    
     <string name="btLogin">Entrar</string>
     <string name="btCadastrar">Cadastrar-se</string>
     <string name="btCancelar">Cancelar</string>
     <string name="btVoltar">Voltar</string>
-    
     <string name="btVerLista">Visualizar lista de problemas</string>
-    
     <string name="home">Página Inicial</string>
     <string name="email">E-mail</string>
     <string name="senha">Senha</string>
-    
     <string name="etNome">Digite seu nome completo.</string>
     <string name="etCPF">Digite seu CPF.</string>
     <string name="etEndereco">Digite seu endereço.</string>
     <string name="etEmail">Digite seu e-mail.</string>
     <string name="etSenha">Digite uma senha.</string>
     <string name="etConSenha">Confirme sua senha.</string>
-    
     <string name="aviso1">Este e-mail será seu login.*</string>
-    
-    
     <string name="tvProblema">Qual o seu problema?</string>
-    
     <string name="spCategorias">Selecione uma categoria</string>
     <string name="etDescricao">Descreva aqui sua reclamação.</string>
-    
     <string name="fotovideo">Anexar Foto/Vídeo</string>
     <string name="reportar">Reportar problema</string>
-    
-    
+    <string name="title_activity_lista_recl">Lista de Notificações</string>
+    <string name="svListaRecl">Pesquise notificações</string>
     
 
 </resources>
