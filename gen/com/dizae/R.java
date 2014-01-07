@@ -84,6 +84,7 @@ public final class R {
         public static final int spCategorias=0x7f050012;
         public static final int svListaRecl=0x7f050017;
         public static final int title_activity_lista_recl=0x7f050016;
+        public static final int tvListarec=0x7f050018;
         public static final int tvProblema=0x7f050011;
     }
     public static final class style {
