@@ -25,6 +25,7 @@
     <string name="reportar">Reportar problema</string>
     <string name="title_activity_lista_recl">Lista de Notificações</string>
     <string name="svListaRecl">Pesquise notificações</string>
+    <string name="tvListarec">Lista de reclamações</string>
     
 
 </resources>

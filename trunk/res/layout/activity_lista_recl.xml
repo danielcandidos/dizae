@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp" >
+        android:layout_marginTop="30dp" >
 
     </SearchView>
 
@@ -25,8 +25,20 @@
         android:layout_below="@+id/svListaRecl"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp" >
+        android:layout_marginTop="10dp" >
 
     </ExpandableListView>
+
+
+    <TextView
+        android:id="@+id/tvProblema"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="@string/tvListarec"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
 
  </RelativeLayout>
