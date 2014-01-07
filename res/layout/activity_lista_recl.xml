@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="65dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp" >
 
@@ -28,14 +28,5 @@
         android:layout_marginTop="15dp" >
 
     </ExpandableListView>
-
-    <Button
-        android:id="@+id/btVoltar"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/svListaRecl"
-        android:text="@string/btVoltar" />
 
  </RelativeLayout>
