@@ -10,20 +10,20 @@
     tools:context=".MainActivity" >
 
     <Button
-        android:id="@+id/btLogin"
+        android:id="@+id/btActivityLogin"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btCadastrar"
+        android:layout_above="@+id/btActivityCadastrar"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
         android:text="@string/btLogin"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btCadastrar"
+        android:id="@+id/btActivityCadastrar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btLogin"
+        android:layout_alignLeft="@+id/btActivityLogin"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="26dp"
         android:text="@string/btCadastrar"
