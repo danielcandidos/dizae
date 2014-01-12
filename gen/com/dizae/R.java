@@ -27,12 +27,13 @@ public final class R {
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f080000;
-        public static final int action_settings=0x7f080012;
+        public static final int action_settings=0x7f080014;
         public static final int btCadastrar=0x7f080008;
         public static final int btCancelar=0x7f080009;
         public static final int btLogin=0x7f08000a;
         public static final int btVoltar=0x7f08000d;
         public static final int button2=0x7f08000c;
+        public static final int checkBox1=0x7f080012;
         public static final int email=0x7f080011;
         public static final int etConSenha=0x7f080007;
         public static final int etDescricao=0x7f08000e;
@@ -44,6 +45,7 @@ public final class R {
         public static final int senha=0x7f080002;
         public static final int spinner1=0x7f08000b;
         public static final int svListaRecl=0x7f08000f;
+        public static final int textView1=0x7f080013;
         public static final int tvProblema=0x7f080005;
     }
     public static final class layout {
