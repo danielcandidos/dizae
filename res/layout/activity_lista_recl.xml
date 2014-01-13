@@ -29,7 +29,6 @@
 
     </ExpandableListView>
 
-
     <TextView
         android:id="@+id/tvProblema"
         android:layout_width="wrap_content"
@@ -37,8 +36,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:text="@string/tvListarec"
+        android:text="@string/tvRanking"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
 
  </RelativeLayout>
