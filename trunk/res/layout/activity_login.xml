@@ -60,14 +60,6 @@
         android:layout_alignLeft="@+id/btLogin"
         android:layout_below="@+id/btLogin"
         android:layout_marginTop="14dp"
-        android:text="Salvar senha" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/checkBox1"
-        android:layout_below="@+id/checkBox1"
-        android:text="Esqueceu sua senha?" />
+        android:text="@string/cbSalvarSenha" />
 
 </RelativeLayout>
