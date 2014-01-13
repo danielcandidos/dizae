@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.dizae.MainActivity"            
+            android:name="com.dizae.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,17 +31,24 @@
             android:label="@string/btCadastrar" >
         </activity>
         <activity
-            android:name="com.dizae.HomeActivity"
+            android:name="com.dizae.RepProblActivity"
             android:label="@string/home" >
         </activity>
         <activity
-            android:name="com.dizae.ListaReclActivity"
+            android:name="com.dizae.HomeRankingActivity"
             android:label="@string/title_activity_lista_recl" >
         </activity>
+        <activity
+            android:name="com.dizae.UsuarioActivity"
+            android:label="@string/title_activity_usuario" >
+        </activity>
+        <activity
+            android:name="com.dizae.EditarUsuarioActivity"
+            android:label="@string/title_activity_editar_usuario" >
+        </activity>
     </application>
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    
 
 </manifest>
