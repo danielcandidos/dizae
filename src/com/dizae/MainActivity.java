@@ -1,58 +1,77 @@
 package com.dizae;
 
+import com.dizae.content.HomeFragment;
+import com.dizae.content.MapFragment;
+import com.dizae.content.RegisterFragment;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
-import android.view.*;
-import android.widget.*;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.content.res.Configuration;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-	Button btLogin, btCadastrar;
+	private DrawerLayout mDrawerLayout;
+    private LinearLayout mDrawerList;
+    private ActionBarDrawerToggle mDrawerToggle;
+    
+    private TextView mapOption;
+    private TextView userOption;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+    //private CharSequence mDrawerTitle;
+    //private CharSequence mTitle;    
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        inicialize();
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (LinearLayout) findViewById(R.id.sidebar);
+        
+        
+    }
+    
+    private void changeFragment(Fragment fragment){
+    	 
+         Bundle args = new Bundle();         
 
+         FragmentManager fragmentManager = getFragmentManager();
+         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
-		btLogin = (Button) findViewById(R.id.btActivityLogin);
-		btCadastrar = (Button) findViewById(R.id.btActivityCadastrar);
-
-
-
-		btLogin.setOnClickListener(new View.OnClickListener() {			
+               
+         mDrawerLayout.closeDrawer(mDrawerList);
+    }
+    
+    
+    
+    private void inicialize(){
+    	mapOption = (TextView) findViewById(R.id.sidebar_map_option);    	
+    	mapOption.setOnClickListener(new OnClickListener() {
+			
 			@Override
-			public void onClick(View arg0) {
-				chamarLogin();				
+			public void onClick(View v) {				
+				changeFragment(new MapFragment());
 			}
 		});
-
-		btCadastrar.setOnClickListener(new View.OnClickListener() {
-
+    	
+    	userOption = (TextView) findViewById(R.id.sidebar_user_email);
+    	userOption.setOnClickListener(new OnClickListener() {
+			
 			@Override
-			public void onClick(View arg0) {
-				chamarCadastro();				
+			public void onClick(View v) {				
+				changeFragment(new HomeFragment());
 			}
-		});    
-	}
-
-	public void chamarLogin () {
-		Intent intent = new Intent (this, LoginActivity.class);
-		startActivity (intent);   
-	}
-
-	public void chamarCadastro() {
-		Intent intent = new Intent (this,CadastroActivity.class);
-		startActivity(intent);   	
-	}        
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
+		});
+    	
+    }
 
 }

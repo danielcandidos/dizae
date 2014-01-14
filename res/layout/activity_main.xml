@@ -1,32 +1,75 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/fundo01"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btActivityLogin"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btActivityCadastrar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
-        android:text="@string/btLogin"
-        android:textStyle="bold" />
+    <!-- As the main content view, the view below consumes the entire
+         space available using match_parent in both dimensions. -->
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/btActivityCadastrar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btActivityLogin"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="26dp"
-        android:text="@string/btCadastrar"
-        android:textStyle="bold" />
+        
 
-</RelativeLayout>
+    </FrameLayout>
+
+    <!-- android:layout_gravity="start" tells DrawerLayout to treat
+         this as a sliding drawer on the left side for left-to-right
+         languages and on the right side for right-to-left languages.
+         The drawer is given a fixed width in dp and extends the full height of
+         the container. A solid background is used for contrast
+         with the content view. -->
+    <LinearLayout
+        android:id="@+id/sidebar"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:background="#111"
+        android:orientation="vertical">
+        <TextView 
+            android:id="@+id/sidebar_user_email"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/sidebar_heigth"            
+            android:gravity="left|center"  
+            android:textColor="#FCFDFF"          
+            android:drawableLeft="@drawable/ic_action_person"/>
+        <TextView 
+            android:id="@+id/sidebar_map_option"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/sidebar_heigth"            
+            android:gravity="left|center"                                   
+            android:text="@string/sidebar_map_label"
+            android:textColor="#FCFDFF" 
+            android:background="#25A6FF"
+            android:drawableLeft="@drawable/ic_action_map"/>
+        <TextView 
+            android:id="@+id/sidebar_router_option"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/sidebar_heigth"
+            android:gravity="left|center"
+            android:textColor="#FCFDFF" 
+            android:text="@string/sidebar_router_label"
+            android:drawableLeft="@drawable/ic_action_directions"/>
+        <TextView 
+            android:id="@+id/sidebar_line_option"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/sidebar_heigth"
+            android:gravity="left|center"
+            android:textColor="#FCFDFF" 
+            android:text="@string/sidebar_line_label"
+            android:drawableLeft="@drawable/ic_action_location_found"/>
+        <TextView
+            android:id="@+id/sidebar_stoped_option"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/sidebar_heigth"
+            android:gravity="left|center"
+            android:textColor="#FCFDFF" 
+            android:text="@string/sidebar_stoped_label"
+            android:drawableLeft="@drawable/ic_action_place"/>
+    </LinearLayout>
+</android.support.v4.widget.DrawerLayout>

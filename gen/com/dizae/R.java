@@ -10,6 +10,9 @@ package com.dizae;
 public final class R {
     public static final class attr {
     }
+    public static final class color {
+        public static final int sidebar_label_color=0x7f040000;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -17,49 +20,65 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f050000;
+        public static final int activity_vertical_margin=0x7f050001;
+        public static final int sidebar_heigth=0x7f050002;
     }
     public static final class drawable {
         public static final int fundo01=0x7f020000;
         public static final int fundo02=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
+        public static final int ic_action_directions=0x7f020002;
+        public static final int ic_action_location_found=0x7f020003;
+        public static final int ic_action_map=0x7f020004;
+        public static final int ic_action_person=0x7f020005;
+        public static final int ic_action_place=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
     }
     public static final class id {
-        public static final int RelativeLayout1=0x7f080000;
-        public static final int action_settings=0x7f080021;
-        public static final int btActivityCadastrar=0x7f080011;
-        public static final int btActivityLogin=0x7f080010;
-        public static final int btCadastrar=0x7f080002;
-        public static final int btCancelar=0x7f080005;
-        public static final int btLogin=0x7f08000e;
-        public static final int btVoltar=0x7f080014;
-        public static final int button1=0x7f08001e;
-        public static final int button2=0x7f080013;
-        public static final int checkBox1=0x7f08000f;
-        public static final int email=0x7f08000c;
-        public static final int etConSenha=0x7f080003;
-        public static final int etCpf=0x7f080006;
-        public static final int etDescricao=0x7f080015;
-        public static final int etEmail=0x7f080008;
-        public static final int etEndereco=0x7f080007;
-        public static final int etNome=0x7f080001;
-        public static final int etSenha=0x7f080009;
-        public static final int expandableListView1=0x7f08000b;
-        public static final int listView1=0x7f080020;
-        public static final int senha=0x7f08000d;
-        public static final int spinner1=0x7f080012;
-        public static final int svListaRecl=0x7f08000a;
-        public static final int textView1=0x7f080016;
-        public static final int textView2=0x7f080017;
-        public static final int textView3=0x7f080018;
-        public static final int textView4=0x7f080019;
-        public static final int textView5=0x7f08001a;
-        public static final int textView6=0x7f08001b;
-        public static final int textView7=0x7f08001c;
-        public static final int textView8=0x7f08001d;
-        public static final int textView9=0x7f08001f;
-        public static final int tvProblema=0x7f080004;
+        public static final int RelativeLayout1=0x7f090000;
+        public static final int action_settings=0x7f09002b;
+        public static final int btActivityCadastrar=0x7f090028;
+        public static final int btActivityLogin=0x7f090027;
+        public static final int btCadastrar=0x7f090002;
+        public static final int btCancelar=0x7f090005;
+        public static final int btLogin=0x7f09000e;
+        public static final int btVoltar=0x7f09001a;
+        public static final int button1=0x7f090024;
+        public static final int button2=0x7f090019;
+        public static final int checkBox1=0x7f09000f;
+        public static final int content_frame=0x7f090011;
+        public static final int drawer_layout=0x7f090010;
+        public static final int editText1=0x7f090029;
+        public static final int editText2=0x7f09002a;
+        public static final int email=0x7f09000c;
+        public static final int etConSenha=0x7f090003;
+        public static final int etCpf=0x7f090006;
+        public static final int etDescricao=0x7f09001b;
+        public static final int etEmail=0x7f090008;
+        public static final int etEndereco=0x7f090007;
+        public static final int etNome=0x7f090001;
+        public static final int etSenha=0x7f090009;
+        public static final int expandableListView1=0x7f09000b;
+        public static final int listView1=0x7f090026;
+        public static final int senha=0x7f09000d;
+        public static final int sidebar=0x7f090012;
+        public static final int sidebar_line_option=0x7f090016;
+        public static final int sidebar_map_option=0x7f090014;
+        public static final int sidebar_router_option=0x7f090015;
+        public static final int sidebar_stoped_option=0x7f090017;
+        public static final int sidebar_user_email=0x7f090013;
+        public static final int spinner1=0x7f090018;
+        public static final int svListaRecl=0x7f09000a;
+        public static final int textView1=0x7f09001c;
+        public static final int textView2=0x7f09001d;
+        public static final int textView3=0x7f09001e;
+        public static final int textView4=0x7f09001f;
+        public static final int textView5=0x7f090020;
+        public static final int textView6=0x7f090021;
+        public static final int textView7=0x7f090022;
+        public static final int textView8=0x7f090023;
+        public static final int textView9=0x7f090025;
+        public static final int tvProblema=0x7f090004;
     }
     public static final class layout {
         public static final int activity_cadastro=0x7f030000;
@@ -69,58 +88,68 @@ public final class R {
         public static final int activity_main=0x7f030004;
         public static final int activity_rep_probl=0x7f030005;
         public static final int activity_usuario=0x7f030006;
+        public static final int fragment_home=0x7f030007;
+        public static final int fragment_map=0x7f030008;
+        public static final int fragment_user_register=0x7f030009;
     }
     public static final class menu {
-        public static final int cadastro=0x7f070000;
-        public static final int editar_usuario=0x7f070001;
-        public static final int home=0x7f070002;
-        public static final int lista_recl=0x7f070003;
-        public static final int login=0x7f070004;
-        public static final int main=0x7f070005;
-        public static final int usuario=0x7f070006;
+        public static final int cadastro=0x7f080000;
+        public static final int editar_usuario=0x7f080001;
+        public static final int home=0x7f080002;
+        public static final int lista_recl=0x7f080003;
+        public static final int login=0x7f080004;
+        public static final int main=0x7f080005;
+        public static final int usuario=0x7f080006;
     }
     public static final class string {
-        public static final int action_settings=0x7f050001;
-        public static final int app_name=0x7f050000;
-        public static final int aviso1=0x7f050011;
-        public static final int btCadastrar=0x7f050003;
-        public static final int btCancelar=0x7f050004;
-        public static final int btConfirmar=0x7f050027;
-        public static final int btEditarInfo=0x7f050024;
-        public static final int btLogin=0x7f050002;
-        public static final int btSeguirPubl=0x7f05001a;
-        public static final int btVerLista=0x7f050007;
-        public static final int btVoltar=0x7f050005;
-        public static final int cbSalvarSenha=0x7f050019;
-        public static final int cpf_usuario=0x7f050023;
-        public static final int email=0x7f050009;
-        public static final int email_usuario=0x7f050021;
-        public static final int ender_usuario=0x7f050022;
-        public static final int etCPF=0x7f05000c;
-        public static final int etConSenha=0x7f050010;
-        public static final int etDescricao=0x7f050014;
-        public static final int etEmail=0x7f05000e;
-        public static final int etEndereco=0x7f05000d;
-        public static final int etNome=0x7f05000b;
-        public static final int etSenha=0x7f05000f;
-        public static final int fotovideo=0x7f050015;
-        public static final int home=0x7f050008;
-        public static final int info_cpf=0x7f05001f;
-        public static final int info_email=0x7f05001d;
-        public static final int info_ender=0x7f05001e;
-        public static final int info_nome=0x7f05001c;
-        public static final int minhas_public=0x7f050025;
-        public static final int nome_usuario=0x7f050020;
-        public static final int reportar=0x7f050016;
-        public static final int senha=0x7f05000a;
-        public static final int spCategorias=0x7f050013;
-        public static final int svListaRecl=0x7f050018;
-        public static final int title_activity_editar_usuario=0x7f050026;
-        public static final int title_activity_lista_recl=0x7f050017;
-        public static final int title_activity_usuario=0x7f05001b;
-        public static final int tvCondicao=0x7f050028;
-        public static final int tvProblema=0x7f050012;
-        public static final int tvRanking=0x7f050006;
+        public static final int action_settings=0x7f060001;
+        public static final int app_name=0x7f060000;
+        public static final int aviso1=0x7f060011;
+        public static final int btCadastrar=0x7f060003;
+        public static final int btCancelar=0x7f060004;
+        public static final int btConfirmar=0x7f060027;
+        public static final int btEditarInfo=0x7f060024;
+        public static final int btLogin=0x7f060002;
+        public static final int btSeguirPubl=0x7f06001a;
+        public static final int btVerLista=0x7f060007;
+        public static final int btVoltar=0x7f060005;
+        public static final int cbResolvido=0x7f06002a;
+        public static final int cbSalvarSenha=0x7f060019;
+        public static final int cpf_usuario=0x7f060023;
+        public static final int email=0x7f060009;
+        public static final int email_usuario=0x7f060021;
+        public static final int ender_usuario=0x7f060022;
+        public static final int etCPF=0x7f06000c;
+        public static final int etConSenha=0x7f060010;
+        public static final int etDescricao=0x7f060014;
+        public static final int etEmail=0x7f06000e;
+        public static final int etEndereco=0x7f06000d;
+        public static final int etNome=0x7f06000b;
+        public static final int etSenha=0x7f06000f;
+        public static final int fotovideo=0x7f060015;
+        public static final int home=0x7f060008;
+        public static final int info_cpf=0x7f06001f;
+        public static final int info_email=0x7f06001d;
+        public static final int info_ender=0x7f06001e;
+        public static final int info_nome=0x7f06001c;
+        public static final int minhas_public=0x7f060025;
+        public static final int nome_usuario=0x7f060020;
+        public static final int reportar=0x7f060016;
+        public static final int senha=0x7f06000a;
+        public static final int sidebar_line_label=0x7f06002e;
+        public static final int sidebar_map_label=0x7f06002c;
+        public static final int sidebar_router_label=0x7f06002d;
+        public static final int sidebar_stoped_label=0x7f06002f;
+        public static final int spCategorias=0x7f060013;
+        public static final int svListaRecl=0x7f060018;
+        public static final int title_activity_editar_usuario=0x7f060026;
+        public static final int title_activity_lista_recl=0x7f060017;
+        public static final int title_activity_rec=0x7f06002b;
+        public static final int title_activity_usuario=0x7f06001b;
+        public static final int tvCondicao=0x7f060028;
+        public static final int tvProb=0x7f060029;
+        public static final int tvProblema=0x7f060012;
+        public static final int tvRanking=0x7f060006;
     }
     public static final class style {
         /** 
@@ -144,10 +173,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
     }
 }
