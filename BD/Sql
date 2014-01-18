@@ -1,0 +1,28 @@
+create database dizae;
+
+use dizae;
+
+create table dizae_enderecos(cep varchar(10) not null primary key, 
+rua varchar(30) not null, numero int not null, bairro varchar(30) not null, 
+cidade varchar(20) not null, complemento varchar(10));
+
+create table dizae_usuarios(login_cpf varchar(14) not null primary key, 
+nome varchar(20), email varchar(30) not null, senha varchar(14) not null, 
+cep varchar(20) not null,
+foreign key(cep) references dizae_enderecos(cep));
+
+create table dizae_tipo_ocorrencia(codigo int not null primary key, 
+nome_tipo_ocorrencia varchar(30) not null);
+
+create table dizae_tipo_situacao_ocorrencia(codigo int not null primary key, 
+nome_situacao varchar(30) not null);
+
+create table dizae_ocorrencias(cep varchar(10) not null,
+descricao varchar(200) not null, data_ocorrencia datetime not null, 
+cod_tipo_ocorrencia int not null, imagem blob, 
+cadastrado_por varchar(14) not null, situacao_codigo int not null, 
+reiteracoes int not null, data_resolucao datetime, 
+foreign key (cep) references dizae_enderecos(cep), 
+foreign key (cadastrado_por) references dizae_usuarios(login_cpf), 
+foreign key (situacao_codigo) references dizae_tipo_situacao_ocorrencia(codigo));
+
