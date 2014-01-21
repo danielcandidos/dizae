@@ -45,9 +45,9 @@
     <string name="tvProb">Descrição do Problema</string>
     <string name="cbResolvido">Marque para Resolvido</string>
     <string name="title_activity_rec">RecActivity</string>        
-    <string name="sidebar_map_label">Mapa</string>
-    <string name="sidebar_router_label">Rotas</string>
-    <string name="sidebar_line_label">Linhas</string>
-    <string name="sidebar_stoped_label">Paradas</string>
+    <string name="sidebar_minhas_reclamacoes">Minhas Reclamações</string>
+    <string name="sidebar_reclamacoes">Reclamações</string>
+    <string name="sidebar_feed">Feed</string>
+    <string name="sidebar_acompanhamento">Acompanhamento</string>
 
 </resources>

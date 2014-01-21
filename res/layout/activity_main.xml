@@ -36,40 +36,41 @@
             android:layout_width="fill_parent"
             android:layout_height="@dimen/sidebar_heigth"            
             android:gravity="left|center"  
-            android:textColor="#FCFDFF"          
+            android:textColor="#FCFDFF"
+            android:text="Home"          
             android:drawableLeft="@drawable/ic_action_person"/>
         <TextView 
             android:id="@+id/sidebar_map_option"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/sidebar_heigth"            
             android:gravity="left|center"                                   
-            android:text="@string/sidebar_map_label"
+            android:text="@string/sidebar_minhas_reclamacoes"
             android:textColor="#FCFDFF" 
             android:background="#25A6FF"
-            android:drawableLeft="@drawable/ic_action_map"/>
+            android:drawableLeft="@drawable/ic_action_chat"/>
         <TextView 
             android:id="@+id/sidebar_router_option"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/sidebar_heigth"
             android:gravity="left|center"
             android:textColor="#FCFDFF" 
-            android:text="@string/sidebar_router_label"
-            android:drawableLeft="@drawable/ic_action_directions"/>
+            android:text="@string/sidebar_reclamacoes"
+            android:drawableLeft="@drawable/ic_action_view_as_list"/>
         <TextView 
             android:id="@+id/sidebar_line_option"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/sidebar_heigth"
             android:gravity="left|center"
             android:textColor="#FCFDFF" 
-            android:text="@string/sidebar_line_label"
-            android:drawableLeft="@drawable/ic_action_location_found"/>
+            android:text="@string/sidebar_feed"
+            android:drawableLeft="@drawable/ic_action_web_site"/>
         <TextView
             android:id="@+id/sidebar_stoped_option"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/sidebar_heigth"
             android:gravity="left|center"
             android:textColor="#FCFDFF" 
-            android:text="@string/sidebar_stoped_label"
-            android:drawableLeft="@drawable/ic_action_place"/>
+            android:text="@string/sidebar_acompanhamento"
+            android:drawableLeft="@drawable/ic_action_group"/>
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>
