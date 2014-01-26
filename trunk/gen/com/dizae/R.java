@@ -27,12 +27,16 @@ public final class R {
     public static final class drawable {
         public static final int fundo01=0x7f020000;
         public static final int fundo02=0x7f020001;
-        public static final int ic_action_directions=0x7f020002;
-        public static final int ic_action_location_found=0x7f020003;
-        public static final int ic_action_map=0x7f020004;
-        public static final int ic_action_person=0x7f020005;
-        public static final int ic_action_place=0x7f020006;
-        public static final int ic_launcher=0x7f020007;
+        public static final int ic_action_chat=0x7f020002;
+        public static final int ic_action_directions=0x7f020003;
+        public static final int ic_action_group=0x7f020004;
+        public static final int ic_action_location_found=0x7f020005;
+        public static final int ic_action_map=0x7f020006;
+        public static final int ic_action_person=0x7f020007;
+        public static final int ic_action_place=0x7f020008;
+        public static final int ic_action_view_as_list=0x7f020009;
+        public static final int ic_action_web_site=0x7f02000a;
+        public static final int ic_launcher=0x7f02000b;
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f090000;
@@ -136,10 +140,10 @@ public final class R {
         public static final int nome_usuario=0x7f060020;
         public static final int reportar=0x7f060016;
         public static final int senha=0x7f06000a;
-        public static final int sidebar_line_label=0x7f06002e;
-        public static final int sidebar_map_label=0x7f06002c;
-        public static final int sidebar_router_label=0x7f06002d;
-        public static final int sidebar_stoped_label=0x7f06002f;
+        public static final int sidebar_acompanhamento=0x7f06002f;
+        public static final int sidebar_feed=0x7f06002e;
+        public static final int sidebar_minhas_reclamacoes=0x7f06002c;
+        public static final int sidebar_reclamacoes=0x7f06002d;
         public static final int spCategorias=0x7f060013;
         public static final int svListaRecl=0x7f060018;
         public static final int title_activity_editar_usuario=0x7f060026;
