@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+tvResolvidoListatvResolvidoLista<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">Dizaê</string>
@@ -49,5 +49,6 @@
     <string name="sidebar_reclamacoes">Reclamações</string>
     <string name="sidebar_feed">Feed</string>
     <string name="sidebar_acompanhamento">Acompanhamento</string>
+    <string name="tvResolvidoLista">Resolvido</string>
 
 </resources>
