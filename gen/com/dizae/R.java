@@ -154,6 +154,7 @@ public final class R {
         public static final int tvProb=0x7f060029;
         public static final int tvProblema=0x7f060012;
         public static final int tvRanking=0x7f060006;
+        public static final int tvResolvidoLista=0x7f060030;
     }
     public static final class style {
         /** 
