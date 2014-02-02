@@ -6,27 +6,26 @@
     android:background="@drawable/fundo02"
     android:orientation="vertical" >
 
-    <SearchView
-        android:id="@+id/svListaRecl"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="30dp" >
-
-    </SearchView>
-
     <ExpandableListView
         android:id="@+id/expandableListView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/svListaRecl"
         android:layout_below="@+id/svListaRecl"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp" >
+        android:layout_marginTop="15dp" >
 
     </ExpandableListView>
+
+    <SearchView
+        android:id="@+id/svListaRecl"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvProblema"
+        android:layout_marginTop="10dp" >
+    </SearchView>
 
     <TextView
         android:id="@+id/tvProblema"
@@ -34,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="56dp"
         android:text="@string/tvRanking"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
