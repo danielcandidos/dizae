@@ -43,14 +43,14 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btCancelar"
+        android:id="@+id/btCadastro"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btLogin"
         android:layout_alignBottom="@+id/btLogin"
         android:layout_alignRight="@+id/email"
         android:layout_marginLeft="160dp"
-        android:text="@string/btCancelar"
+        android:text="@string/btCadastro"
         android:textStyle="bold" />
 
     <CheckBox

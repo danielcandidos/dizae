@@ -50,5 +50,6 @@
     <string name="sidebar_feed">Feed</string>
     <string name="sidebar_acompanhamento">Acompanhamento</string>
     <string name="tvResolvidoLista">Resolvido</string>
+    <string name="btCadastro">Cadastrar</string>
 
 </resources>
