@@ -3,8 +3,6 @@ package com.dizae;
 import java.util.concurrent.ExecutionException;
 
 import com.dizae.content.HomeFragment;
-import com.dizae.content.MapFragment;
-import com.dizae.content.RegisterFragment;
 import com.dizae.database.UserDAO;
 
 import android.os.Bundle;
