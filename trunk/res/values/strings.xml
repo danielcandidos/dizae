@@ -45,11 +45,11 @@
     <string name="tvProb">Descrição do Problema</string>
     <string name="cbResolvido">Marque para Resolvido</string>
     <string name="title_activity_rec">RecActivity</string>        
-    <string name="sidebar_minhas_reclamacoes">Minhas Reclamações</string>
-    <string name="sidebar_reclamacoes">Reclamações</string>
+    <string name="sidebar_home">Home</string>
+    <string name="sidebar_config">Configurações</string>
+    <string name="sidebar_perfil">Perfil do Usuário</string>
+    <string name="sidebar_new_publication">Nova Publicação</string>
     <string name="sidebar_feed">Feed</string>
-    <string name="sidebar_acompanhamento">Acompanhamento</string>
     <string name="tvResolvidoLista">Resolvido</string>
     <string name="btCadastro">Cadastrar</string>
-
 </resources>
