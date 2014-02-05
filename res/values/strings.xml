@@ -19,7 +19,7 @@
     <string name="etSenha">Digite uma senha.</string>
     <string name="etConSenha">Confirme sua senha.</string>
     <string name="aviso1">Este e-mail será seu login.*</string>
-    <string name="tvProblema">Qual o seu problema?</string>
+    <string name="tvProblema">Que problema deseja reportar? Selecione uma das categorias :</string>
     <string name="spCategorias">Selecione uma categoria</string>
     <string name="etDescricao">Descreva aqui sua reclamação.</string>
     <string name="fotovideo">Anexar Foto/Vídeo</string>
