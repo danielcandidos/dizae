@@ -5,6 +5,16 @@
     android:layout_height="match_parent"
     android:background="@drawable/fundo02"
     android:orientation="vertical" >
+    
+    <Spinner 
+        
+        android:id="@+id/spnMusketeers"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+                
+        />
 
     <ExpandableListView
         android:id="@+id/expandableListView1"

@@ -37,8 +37,7 @@ public class MainActivity extends Activity {
 	     userDAO=new UserDAO(this);
 	     userDAO=userDAO.open();
 	     
-	     final  EditText editTextUserName=(EditText)findViewById(R.id.email);
-		 final  EditText editTextPassword=(EditText)findViewById(R.id.senha);
+	     
 	     
 	     btLogin=(Button)findViewById(R.id.btActivityLogin);
 	     btLogin.setOnClickListener(new View.OnClickListener() {
@@ -87,62 +86,6 @@ public class MainActivity extends Activity {
 		startActivity(entra);
 	}
 	
-	/*
-	private DrawerLayout mDrawerLayout;
-    private LinearLayout mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;
-    
-    private TextView mapOption;
-    private TextView userOption;
-
-    //private CharSequence mDrawerTitle;
-    //private CharSequence mTitle;    
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_home);
-        
-        inicialize();
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (LinearLayout) findViewById(R.id.sidebar);
-        
-        
-    }
-    
-    private void changeFragment(Fragment fragment){
-    	 
-         Bundle args = new Bundle();         
-
-         FragmentManager fragmentManager = getFragmentManager();
-         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-
-               
-         mDrawerLayout.closeDrawer(mDrawerList);
-    }
-    
-    
-    
-    private void inicialize(){
-    	mapOption = (TextView) findViewById(R.id.sidebar_map_option);    	
-    	mapOption.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {				
-				changeFragment(new MapFragment());
-			}
-		});
-    	
-    	userOption = (TextView) findViewById(R.id.sidebar_user_email);
-    	userOption.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {				
-				//changeFragment(new HomeFragment());
-			}
-		});
-    	
-    }
-    */
+	
 
 }
