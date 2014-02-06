@@ -6,6 +6,7 @@ import java.util.List;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -37,8 +38,7 @@ public class HomeRankingActivity extends Activity {
 		//Método do Spinner para capturar o item selecionado
 		aspn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
  
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
+			public void onItemSelected1(AdapterView<?> parent, View v, int posicao, long id) {
 				//pega nome pela posição
 				tipo = parent.getItemAtPosition(posicao).toString();
 				//imprime um Toast na tela com o nome que foi selecionado
@@ -48,6 +48,13 @@ public class HomeRankingActivity extends Activity {
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
  
+			}
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 		
