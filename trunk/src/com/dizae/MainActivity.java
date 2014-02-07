@@ -1,27 +1,13 @@
 package com.dizae;
 
-import java.util.concurrent.ExecutionException;
-
-import com.dizae.content.HomeFragment;
-import com.dizae.database.UserDAO;
-
-import android.os.Bundle;
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.widget.DrawerLayout;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.dizae.database.UserDAO;
 
 public class MainActivity extends Activity {
 	
@@ -31,24 +17,17 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		
+		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);		
 	
 	     userDAO=new UserDAO(this);
-	     userDAO=userDAO.open();
-	     
-	     
+	     userDAO=userDAO.open();	     
 	     
 	     btLogin=(Button)findViewById(R.id.btActivityLogin);
 	     btLogin.setOnClickListener(new View.OnClickListener() {
 	 		
 	 		public void onClick(View v) {
-	 			// TODO Auto-generated method stub
-	 			
-	 			chamaLogin();	
-	 			
-				
-				
+	 			// TODO Auto-generated method stub	 			
+	 			chamaLogin();					
 			}
 		});
 		
