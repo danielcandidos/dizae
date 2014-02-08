@@ -37,20 +37,20 @@ public final class R {
     public static final class id {
         public static final int RelativeLayout1=0x7f090000;
         public static final int action_settings=0x7f09002c;
-        public static final int btActivityCadastrar=0x7f090015;
-        public static final int btActivityLogin=0x7f090014;
+        public static final int btActivityCadastrar=0x7f09001b;
+        public static final int btActivityLogin=0x7f09001a;
         public static final int btCadastrar=0x7f090002;
-        public static final int btCadastro=0x7f090010;
+        public static final int btCadastro=0x7f090018;
         public static final int btCancelar=0x7f090005;
-        public static final int btLogin=0x7f09000f;
+        public static final int btLogin=0x7f090017;
         public static final int btVoltar=0x7f09001d;
         public static final int button1=0x7f090027;
         public static final int button2=0x7f09001c;
         public static final int cbResolvido=0x7f09002a;
-        public static final int checkBox1=0x7f090011;
-        public static final int content_frame=0x7f090013;
-        public static final int drawer_layout=0x7f090012;
-        public static final int email=0x7f09000d;
+        public static final int checkBox1=0x7f090019;
+        public static final int content_frame=0x7f09000b;
+        public static final int drawer_layout=0x7f09000a;
+        public static final int email=0x7f090015;
         public static final int etConSenha=0x7f090003;
         public static final int etCpf=0x7f090006;
         public static final int etDescricao=0x7f09001e;
@@ -58,17 +58,17 @@ public final class R {
         public static final int etEndereco=0x7f090007;
         public static final int etNome=0x7f090001;
         public static final int etSenha=0x7f090009;
-        public static final int expandableListView1=0x7f09000b;
+        public static final int expandableListView1=0x7f090013;
         public static final int listView1=0x7f090029;
-        public static final int senha=0x7f09000e;
-        public static final int sidebar=0x7f090016;
-        public static final int sidebar_line_option=0x7f09001a;
-        public static final int sidebar_map_option=0x7f090018;
-        public static final int sidebar_router_option=0x7f090019;
-        public static final int sidebar_stoped_option=0x7f09001b;
-        public static final int sidebar_user_email=0x7f090017;
-        public static final int spinner1=0x7f09000a;
-        public static final int svListaRecl=0x7f09000c;
+        public static final int senha=0x7f090016;
+        public static final int sidebar=0x7f09000c;
+        public static final int sidebar_line_option=0x7f090010;
+        public static final int sidebar_map_option=0x7f09000e;
+        public static final int sidebar_router_option=0x7f09000f;
+        public static final int sidebar_stoped_option=0x7f090011;
+        public static final int sidebar_user_email=0x7f09000d;
+        public static final int spinner1=0x7f090012;
+        public static final int svListaRecl=0x7f090014;
         public static final int textView1=0x7f09001f;
         public static final int textView2=0x7f090020;
         public static final int textView3=0x7f090021;
@@ -90,7 +90,6 @@ public final class R {
         public static final int activity_rep_probl=0x7f030005;
         public static final int activity_usuario=0x7f030006;
         public static final int activity_visualizar_problema=0x7f030007;
-        public static final int fragment_home=0x7f030008;
     }
     public static final class menu {
         public static final int cadastro=0x7f080000;
