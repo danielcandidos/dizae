@@ -64,7 +64,7 @@ public class LoginActivity extends Activity {
 				if(password.equals(storedPassword))
 				{
 					Toast.makeText(LoginActivity.this, "Bem vindo!", Toast.LENGTH_LONG).show();
-					chamaHome();
+					chamarHomeRank();
 				}
 				else
 				{

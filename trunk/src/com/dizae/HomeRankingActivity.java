@@ -23,6 +23,7 @@ public class HomeRankingActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_ranking);
 		
+		Lista.add("Selecione");
 		Lista.add("Mais recentes");
 		Lista.add("Seu bairro");
 		Lista.add("Ranking 10");
