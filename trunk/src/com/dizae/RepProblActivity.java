@@ -32,32 +32,26 @@ public class RepProblActivity extends Activity {
  
 		//Identifica o Spinner no layout
 		aspn = (Spinner) findViewById(R.id.spinner1);
-		//Cria um ArrayAdapter usando um padrão de layout da classe R do android, passando o ArrayList nomes
+		//Cria um ArrayAdapter usando um padrão de layout da classe R do android, passando o ArrayList listaSelecione
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, categorias);
 		ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
 		spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 		aspn.setAdapter(spinnerArrayAdapter);
- 
+				
 		//Método do Spinner para capturar o item selecionado
 		aspn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
- 
-			public void onItemSelected1(AdapterView<?> parent, View v, int posicao, long id) {
-				//pega nome pela posição
+			 
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
+				//pega opcao pela posição
 				categoria = parent.getItemAtPosition(posicao).toString();
-				//imprime um Toast na tela com o nome que foi selecionado
-				Toast.makeText(RepProblActivity.this, "Nome Selecionado: " + categoria, Toast.LENGTH_LONG).show();
+				//imprime um Toast na tela com o opcao que foi selecionado
+				Toast.makeText(RepProblActivity.this, "opcao Selecionado: " + categoria, Toast.LENGTH_LONG).show();
 			}
  
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
  
-			}
-
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				// TODO Auto-generated method stub
-				
 			}
 		});
 		
@@ -68,9 +62,7 @@ public class RepProblActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.home, menu);
 		return true;
-	}
-	
-	
+	}	
 }
 
 
