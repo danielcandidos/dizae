@@ -98,8 +98,7 @@ public class HomeRankingActivity extends Activity {
 		mDrawerLayout.closeDrawer(mDrawerList);
 		Intent entra = new Intent(this, RepProblActivity.class);
 		entra.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(entra);
-		
+		startActivity(entra);		
 	}
 
 }

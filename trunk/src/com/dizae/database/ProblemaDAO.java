@@ -112,17 +112,22 @@ public class ProblemaDAO {
 	private Problema cursorToProblema(Cursor cursor){
 		
 		UserDAO userDAO = new UserDAO(context);
-		Problema problema = new Problema();
-		problema.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+		Problema problema = new Problema(userDAO.getUser(cursor.getInt(cursor.getColumnIndex("USUARIO"))),
+				cursor.getString(cursor.getColumnIndex("DESCRICAO")),
+				cursor.getString(cursor.getColumnIndex("CATEGORIA")),
+				cursor.getString(cursor.getColumnIndex("FOTO")),
+				cursor.getDouble(cursor.getColumnIndex("LATITUDE")),
+				cursor.getDouble(cursor.getColumnIndex("LONGITUDE")));
+		
+		/* problema.setId(cursor.getInt(cursor.getColumnIndex("ID")));
 	    problema.setUsuario(userDAO.getUser(cursor.getInt(cursor.getColumnIndex("USUARIO"))));
 	    problema.setDescricao(cursor.getString(cursor.getColumnIndex("DESCRICAO")));
 	    problema.setLatitude(cursor.getDouble(cursor.getColumnIndex("LATITUDE")));
 	    problema.setLongitude(cursor.getDouble(cursor.getColumnIndex("LONGITUDE")));
 	    problema.setCategoria(cursor.getString(cursor.getColumnIndex("CATEGORIA")));
-	    problema.setFoto(cursor.getString(cursor.getColumnIndex("FOTO")));
+	    problema.setFoto(cursor.getString(cursor.getColumnIndex("FOTO"))); */
 	    
-	    return problema;
-		
+	    return problema;		
 		
 	}
 	

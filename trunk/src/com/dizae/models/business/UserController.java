@@ -37,8 +37,6 @@ public class UserController extends AsyncTask<ArrayList<NameValuePair>, Void, JS
 	protected JSONObject doInBackground(ArrayList<NameValuePair>... params) {
 		// TODO Auto-generated method stub
 
-		
-
 		try {
 			String result = conexaoHttpClient.executaHttpPost(URL_STRING, params[0]);
 			return returnAnalise(result);
@@ -130,11 +128,5 @@ public class UserController extends AsyncTask<ArrayList<NameValuePair>, Void, JS
 	public interface RegisterUserListener{
 		void onRegisterUser(JSONObject object);		
 	}
-
-
-
-
-
-
-
+	
 }
