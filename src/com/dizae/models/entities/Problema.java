@@ -8,16 +8,24 @@ public class Problema {
 	String descricao;
 	String categoria;
 	String foto;
+	double latitude,longitude;
 	
-	
+	public Problema(User u, String des, String cat, String f, double la, double lo){
+		this.usuario = u;
+		this.descricao = des;
+		this.categoria = cat;
+		this.foto = f;
+		this.latitude = la;
+		this.longitude = lo;
+	}
 	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	double latitude,longitude;
+	}	
+	
 	public User getUsuario() {
 		return usuario;
 	}
@@ -53,8 +61,6 @@ public class Problema {
 	}
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
-	}
-	
-	
+	}	
 	
 }
