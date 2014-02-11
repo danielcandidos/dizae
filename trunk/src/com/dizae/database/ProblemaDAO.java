@@ -1,7 +1,7 @@
 package com.dizae.database;
 
+import java.util.ArrayList;
 import com.dizae.models.entities.Problema;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -79,8 +79,7 @@ public class ProblemaDAO {
 	}
 	
 	public Problema getProblema(int id){
-		Problema problema = new Problema();
-		UserDAO userDAO = new UserDAO(context);
+		
 		Cursor cursor=db.query("PROBLEMA", null, " ID=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if(cursor.getCount()<1) // UserName Not Exist
         {
@@ -88,21 +87,43 @@ public class ProblemaDAO {
         	return null;
         }
 	    cursor.moveToFirst();
-	    problema.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+	    Problema problema = cursorToProblema(cursor);
+	    cursor.close();
+		return problema;
+	}
+	
+	public ArrayList<Problema> getProblemasPorCategoria(String categoria){
+		Cursor cursor=db.query("PROBLEMA", null, " CATEGORIA=?", new String[]{categoria}, null, null, null, null);
+        if(cursor.getCount()<1) // UserName Not Exist
+        {
+        	cursor.close();
+        	return null;
+        }
+        ArrayList<Problema> problemas = new ArrayList<Problema>();
+        cursor.moveToNext();
+        while (!cursor.isLast()) {
+        	problemas.add(cursorToProblema(cursor))	;
+        	cursor.moveToNext();
+		}	    
+	    cursor.close();
+		return problemas;
+	}
+	
+	private Problema cursorToProblema(Cursor cursor){
+		
+		UserDAO userDAO = new UserDAO(context);
+		Problema problema = new Problema();
+		problema.setId(cursor.getInt(cursor.getColumnIndex("ID")));
 	    problema.setUsuario(userDAO.getUser(cursor.getInt(cursor.getColumnIndex("USUARIO"))));
 	    problema.setDescricao(cursor.getString(cursor.getColumnIndex("DESCRICAO")));
 	    problema.setLatitude(cursor.getDouble(cursor.getColumnIndex("LATITUDE")));
 	    problema.setLongitude(cursor.getDouble(cursor.getColumnIndex("LONGITUDE")));
 	    problema.setCategoria(cursor.getString(cursor.getColumnIndex("CATEGORIA")));
 	    problema.setFoto(cursor.getString(cursor.getColumnIndex("FOTO")));
-	    cursor.close();
-		return problema;
-	}
-	
-	public Problema getProblemasPorCategoria(String categoria){
-		Problema problema = new Problema();
+	    
+	    return problema;
 		
-		return problema;
+		
 	}
 	
 	
