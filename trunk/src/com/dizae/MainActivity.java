@@ -31,7 +31,8 @@ public class MainActivity extends Activity {
 			}
 		});
 		
-		Button cadastro = (Button) findViewById(R.id.btActivityCadastrar);		
+
+		Button cadastro = (Button) findViewById(R.id.btActivityCadastrar);
 		cadastro.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

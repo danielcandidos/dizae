@@ -1,6 +1,7 @@
 package com.dizae;
 
 import com.dizae.database.UserDAO;
+import com.dizae.models.entities.User;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -90,7 +91,8 @@ public class LoginActivity extends Activity {
 	}
 
 	public void chamarHomeRank () {
-		Intent intent = new Intent(this, HomeRankingActivity.class);        
+		Intent intent = new Intent(this, HomeRankingActivity.class); 
+		//intent.putExtra("user",userId);
 		startActivity (intent);   
 	}
 	

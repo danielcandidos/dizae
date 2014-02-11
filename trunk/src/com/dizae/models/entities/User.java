@@ -9,7 +9,7 @@ import com.dizae.tools.Encrypter;
 
 public class User {
 	
-	
+	private int id;
 	private String name;
 	private String email;
 	private String password;
@@ -46,6 +46,13 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	
 	
 	
