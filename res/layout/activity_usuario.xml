@@ -157,7 +157,7 @@
             android:textColor="#FCFDFF" />
 
         <TextView
-            android:id="@+id/sidebar_map_option"
+            android:id="@+id/sidebar_conf"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/sidebar_heigth"
             android:background="#25A6FF"
@@ -167,7 +167,7 @@
             android:textColor="#FCFDFF" />
 
         <TextView
-            android:id="@+id/sidebar_router_option"
+            android:id="@+id/sidebar_user_perfil"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/sidebar_heigth"
             android:drawableLeft="@drawable/ic_action_person"
@@ -176,7 +176,7 @@
             android:textColor="#FCFDFF" />
 
         <TextView
-            android:id="@+id/sidebar_line_option"
+            android:id="@+id/sidebar_nova_ocorrencia"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/sidebar_heigth"
             android:drawableLeft="@drawable/ic_action_new_publication"
@@ -185,7 +185,7 @@
             android:textColor="#FCFDFF" />
 
         <TextView
-            android:id="@+id/sidebar_stoped_option"
+            android:id="@+id/sidebar_feed"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/sidebar_heigth"
             android:drawableLeft="@drawable/ic_action_feed"
