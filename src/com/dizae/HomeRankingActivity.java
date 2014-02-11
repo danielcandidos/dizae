@@ -4,26 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomeRankingActivity extends Activity {
 	
+	//Layout
+	private DrawerLayout mDrawerLayout;
+    private LinearLayout mDrawerList;
+    //	
 	private Spinner aspn;
 	private List<String> listaSelecione = new ArrayList<String>();
 	private String opcao;
+	// Sidebar Options
+	TextView side_home, side_nova_ocorrencia;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_ranking);
 		
-		listaSelecione.add("Selecione");
+		initSideBar();
+		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (LinearLayout) findViewById(R.id.sidebar);
+		
+		listaSelecione.add("Selecione");		
 		listaSelecione.add("Mais recentes");
 		listaSelecione.add("Seu bairro");
 		listaSelecione.add("Ranking 10");
@@ -60,6 +75,31 @@ public class HomeRankingActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.lista_recl, menu);
 		return true;
+	}
+	
+	private void initSideBar(){
+		side_home = (TextView) findViewById(R.id.sidebar_home);
+		side_nova_ocorrencia = (TextView) findViewById(R.id.sidebar_nova_ocorrencia);
+		
+		side_nova_ocorrencia.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				novaOcorrencia();
+				
+				
+			}
+		});
+	}
+
+	protected void novaOcorrencia() {
+		// TODO Auto-generated method stub
+		mDrawerLayout.closeDrawer(mDrawerList);
+		Intent entra = new Intent(this, RepProblActivity.class);
+		entra.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(entra);
+		
 	}
 
 }

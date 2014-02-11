@@ -1,5 +1,7 @@
 package com.dizae.database;
 
+import com.dizae.models.entities.User;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,8 +13,14 @@ public class UserDAO
 	static final String DATABASE_NAME = "dizaedb.db";
 	static final int DATABASE_VERSION = 1;
 	public static final int NAME_COLUMN = 1;
-	static final String DATABASE_CREATE = "create table "+"LOGIN"+
-	                             "( " +"ID"+" integer primary key autoincrement,"+ "USERNAME  text,CPF text,ENDERECO text,EMAIL text,PASSWORD text); ";
+	static final String DATABASE_CREATE = 
+			"create table LOGIN "+
+			"( ID integer primary key autoincrement," +
+			"USERNAME  text," +
+			"CPF text," +
+			"ENDERECO text," +
+			"EMAIL text," +
+			"PASSWORD text); ";
 
 	public  SQLiteDatabase db;
 	private final Context context;
@@ -78,6 +86,30 @@ public class UserDAO
         String where="EMAIL = ?";
 	    db.update("LOGIN",updatedValues, where, new String[]{userName});			   
 	}
+	
+	public User getUser(int id){
+		
+		User usuario = new User();
+		
+		Cursor cursor=db.query("LOGIN", null, " ID=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if(cursor.getCount()<1) // UserName Not Exist
+        {
+        	cursor.close();
+        	return null;
+        }
+	    cursor.moveToFirst();
+	    usuario.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+	    usuario.setName(cursor.getString(cursor.getColumnIndex("USERNAME")));
+	    usuario.setAddress(cursor.getString(cursor.getColumnIndex("ENDERECO")));
+	    usuario.setCpf(cursor.getString(cursor.getColumnIndex("CPF")));
+	    usuario.setEmail(cursor.getString(cursor.getColumnIndex("EMAIL")));
+		cursor.close();		
+		
+		return usuario;
+		
+	}
+	
+	
 }
 
 
