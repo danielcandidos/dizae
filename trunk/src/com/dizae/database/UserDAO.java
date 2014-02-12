@@ -109,6 +109,28 @@ public class UserDAO
 		
 	}
 	
+public User getUser(String userName){
+		
+		User usuario = new User();
+		
+		Cursor cursor=db.query("LOGIN", null, " EMAIL=?", new String[]{userName}, null, null, null, null);
+        if(cursor.getCount()<1) // UserName Not Exist
+        {
+        	cursor.close();
+        	return null;
+        }
+	    cursor.moveToFirst();
+	    usuario.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+	    usuario.setName(cursor.getString(cursor.getColumnIndex("USERNAME")));
+	    usuario.setAddress(cursor.getString(cursor.getColumnIndex("ENDERECO")));
+	    usuario.setCpf(cursor.getString(cursor.getColumnIndex("CPF")));
+	    usuario.setEmail(cursor.getString(cursor.getColumnIndex("EMAIL")));
+		cursor.close();		
+		
+		return usuario;
+		
+	}
+	
 	
 }
 
