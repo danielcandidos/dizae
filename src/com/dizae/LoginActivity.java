@@ -1,16 +1,15 @@
 package com.dizae;
 
-import com.dizae.database.UserDAO;
-import com.dizae.models.entities.User;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.dizae.database.UserDAO;
 
 public class LoginActivity extends Activity {
 
@@ -64,7 +63,9 @@ public class LoginActivity extends Activity {
 	 			
 				if(password.equals(storedPassword))
 				{
+					
 					Toast.makeText(LoginActivity.this, "Bem vindo!", Toast.LENGTH_LONG).show();
+					RepProblActivity.pegarUser(userName);
 					chamarHomeRank();
 				}
 				else
@@ -91,8 +92,7 @@ public class LoginActivity extends Activity {
 	}
 
 	public void chamarHomeRank () {
-		Intent intent = new Intent(this, HomeRankingActivity.class); 
-		//intent.putExtra("user",userId);
+		Intent intent = new Intent(this, HomeRankingActivity.class);
 		startActivity (intent);   
 	}
 	

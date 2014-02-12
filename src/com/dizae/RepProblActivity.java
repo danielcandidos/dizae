@@ -3,10 +3,6 @@ package com.dizae;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dizae.database.ProblemaDAO;
-import com.dizae.models.entities.Problema;
-import com.dizae.models.entities.User;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +15,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.dizae.database.ProblemaDAO;
+import com.dizae.database.UserDAO;
+import com.dizae.models.entities.Problema;
+
 public class RepProblActivity extends Activity {
 	
 	private Spinner aspn;
@@ -28,14 +28,24 @@ public class RepProblActivity extends Activity {
 	EditText etDescricao;
 	Button btReportar, btLogin;
 	Problema problema;
+	UserDAO userDAO;
+	static String user;
+	
+	//Puxa o nome do usuário que vem da Home, que já veio do Login
+	public static void pegarUser(String userName) {
+		user = userName;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_rep_probl);		
+		setContentView(R.layout.activity_rep_probl);	
 		
 		proDAO = new ProblemaDAO(this);
 		proDAO.open();
+		
+		userDAO=new UserDAO(this);
+		userDAO=userDAO.open();
 				
 		etDescricao=(EditText)findViewById(R.id.etDescricao);
 		
@@ -88,8 +98,9 @@ public class RepProblActivity extends Activity {
 					return;
 				} else {
 					//não consegui um meio existente de "pegar" o usuario para passar para o problema
-					User user = new User(); //passando usuario vazio
-					problema = new Problema (user, descricao, categoria, "", 0, 0);
+					//User user = new User(); //passando usuario vazio
+					//user = userDAO.getUser(id);
+					problema = new Problema (userDAO.getUser(user), descricao, categoria, "foto", 0, 0);
 					proDAO.inserEntry(problema);
 				    Toast.makeText(getApplicationContext(), "Problema cadastrado com Sucesso!", Toast.LENGTH_LONG).show();
 				    chamaRanking();
@@ -119,6 +130,13 @@ public class RepProblActivity extends Activity {
 		getMenuInflater().inflate(R.menu.home, menu);
 		return true;
 	}	
+	
+	protected void onDestroy() {
+		super.onDestroy();
+	    // Close The Database
+		userDAO.close();
+		proDAO.close();
+	}
 }
 
 
