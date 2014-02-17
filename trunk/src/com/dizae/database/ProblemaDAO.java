@@ -51,6 +51,7 @@ public class ProblemaDAO {
 	public void updateEntry(Problema problema){
 		ContentValues updatedValues = new ContentValues();
 		updatedValues.put("USUARIO", problema.getUsuario().getId());
+		//updatedValues.put("TITULO",problema.getTitulo());
 		updatedValues.put("DESCRICAO",problema.getDescricao());
 		updatedValues.put("CATEGORIA",problema.getCategoria());
 		updatedValues.put("LATITUDE", problema.getLatitude());
@@ -65,6 +66,7 @@ public class ProblemaDAO {
 	public void inserEntry(Problema problema){
 		ContentValues newValues = new ContentValues();
 		newValues.put("USUARIO", problema.getUsuario().getId());
+		//newValues.put("TITULO",problema.getTitulo());
 		newValues.put("DESCRICAO", problema.getDescricao());
 		newValues.put("CATEGORIA", problema.getCategoria());
 		newValues.put("LATITUDE", problema.getLatitude());
@@ -109,24 +111,34 @@ public class ProblemaDAO {
 		return problemas;
 	}
 	
+	public ArrayList<String> getListarTudo () {
+		Cursor cursor=db.query("PROBLEMA", null, null, new String[]{}, null, null, null, null);
+        if(cursor.getCount()<1) // UserName Not Exist
+        {
+        	cursor.close();
+        	return null;
+        }
+        ArrayList<String> problemas = new ArrayList<String>();
+        cursor.moveToNext();
+        while (!cursor.isLast()) {
+        	problemas.add(cursorToProblema(cursor).getTitulo())	;
+        	cursor.moveToNext();
+		}	    
+	    cursor.close();
+		return problemas;		
+	}
+	
 	private Problema cursorToProblema(Cursor cursor){
 		
 		UserDAO userDAO = new UserDAO(context);
 		Problema problema = new Problema(userDAO.getUser(cursor.getInt(cursor.getColumnIndex("USUARIO"))),
+				"TITULO",//cursor.getString(cursor.getColumnIndex("TITULO"))
 				cursor.getString(cursor.getColumnIndex("DESCRICAO")),
 				cursor.getString(cursor.getColumnIndex("CATEGORIA")),
 				cursor.getString(cursor.getColumnIndex("FOTO")),
 				cursor.getDouble(cursor.getColumnIndex("LATITUDE")),
 				cursor.getDouble(cursor.getColumnIndex("LONGITUDE")));
-		
-		/* problema.setId(cursor.getInt(cursor.getColumnIndex("ID")));
-	    problema.setUsuario(userDAO.getUser(cursor.getInt(cursor.getColumnIndex("USUARIO"))));
-	    problema.setDescricao(cursor.getString(cursor.getColumnIndex("DESCRICAO")));
-	    problema.setLatitude(cursor.getDouble(cursor.getColumnIndex("LATITUDE")));
-	    problema.setLongitude(cursor.getDouble(cursor.getColumnIndex("LONGITUDE")));
-	    problema.setCategoria(cursor.getString(cursor.getColumnIndex("CATEGORIA")));
-	    problema.setFoto(cursor.getString(cursor.getColumnIndex("FOTO"))); */
-	    
+
 	    return problema;		
 		
 	}

@@ -5,13 +5,15 @@ public class Problema {
 	
 	int id;
 	User usuario;
+	String titulo;
 	String descricao;
 	String categoria;
 	String foto;
 	double latitude,longitude;
 	
-	public Problema(User u, String des, String cat, String f, double la, double lo){
+	public Problema(User u, String t, String des, String cat, String f, double la, double lo){
 		this.usuario = u;
+		this.titulo = t;
 		this.descricao = des;
 		this.categoria = cat;
 		this.foto = f;
@@ -61,6 +63,12 @@ public class Problema {
 	}
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
-	}	
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 	
 }
