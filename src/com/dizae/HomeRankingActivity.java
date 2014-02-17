@@ -38,7 +38,6 @@ public class HomeRankingActivity extends Activity {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (LinearLayout) findViewById(R.id.sidebar);
 		
-		listaSelecione.add("Selecione");		
 		listaSelecione.add("Mais recentes");
 		listaSelecione.add("Seu bairro");
 		listaSelecione.add("Ranking 10");
