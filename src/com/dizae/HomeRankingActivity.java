@@ -3,6 +3,9 @@ package com.dizae;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dizae.database.ProblemaDAO;
+import com.dizae.models.entities.Problema;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,21 +16,28 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 public class HomeRankingActivity extends Activity {
 	
 	//Layout
 	private DrawerLayout mDrawerLayout;
     private LinearLayout mDrawerList;
-    //	
+    //
+    private ListView listaProb;
 	private Spinner aspn;
 	private List<String> listaSelecione = new ArrayList<String>();
+	private ArrayList<String> listaTemp = new ArrayList<String>();
 	private String opcao;
 	// Sidebar Options
-	TextView side_home, side_nova_ocorrencia, side_conf, side_user_perfil;
+	private TextView side_home, side_nova_ocorrencia, side_conf, side_user_perfil;
+	//
+	private ProblemaDAO proDAO;
+	private Problema problema;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +48,10 @@ public class HomeRankingActivity extends Activity {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (LinearLayout) findViewById(R.id.sidebar);
 		
+        proDAO = new ProblemaDAO(this);
+		proDAO.open();
+        
+        listaSelecione.add("Selecione");
 		listaSelecione.add("Mais recentes");
 		listaSelecione.add("Seu bairro");
 		listaSelecione.add("Ranking 10");
@@ -51,21 +65,30 @@ public class HomeRankingActivity extends Activity {
 		aspn.setAdapter(spinnerArrayAdapter);
 		
 		//Método do Spinner para capturar o item selecionado
-		aspn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-		 
+		aspn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {		 
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
 				//pega opcao pela posição
 				opcao = parent.getItemAtPosition(posicao).toString();
 				//imprime um Toast na tela com o opcao que foi selecionado
-				Toast.makeText(HomeRankingActivity.this, "opcao Selecionado: " + opcao, Toast.LENGTH_LONG).show();
-			}
-		
+				if (opcao != "Selecione"){
+					Toast.makeText(HomeRankingActivity.this, "opcao Selecionada: " + opcao, Toast.LENGTH_LONG).show();
+				}	
+			}		
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
 		 
 			}
 		});
+		
+		//Listagem dos titulos dos problemas com retorno (falho) do banco
+		
+		//listaTemp = proDAO.getListarTudo();
+		listaTemp.add("TITULO"); listaTemp.add("TITULO"); listaTemp.add("TITULO"); listaTemp.add("TITULO");
+		listaProb = (ListView) findViewById(R.id.listView1);
+		ArrayAdapter<String> arrayAdapterLista = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, listaTemp);
+		spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+		listaProb.setAdapter(arrayAdapterLista);		
 		
 	}
 
@@ -83,51 +106,37 @@ public class HomeRankingActivity extends Activity {
 		side_user_perfil = (TextView) findViewById(R.id.sidebar_user_perfil);
 		
 		
-		side_nova_ocorrencia.setOnClickListener(new OnClickListener() {
-			
+		side_nova_ocorrencia.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				novaOcorrencia();
-				
-				
+				novaOcorrencia();				
 			}
 		});
 		
-		side_home.setOnClickListener(new OnClickListener() {
-			
+		side_home.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				home();
-				
-				
+				home();		
 			}
 		});
 		
 		side_conf.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				conf();
-
-
-			}
-		});
-		
-		side_user_perfil.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				perfil();
-
-
 			}
 		});
-
-
+		
+		side_user_perfil.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				conf();
+			}
+		});
 	}
 
 	protected void novaOcorrencia() {
@@ -153,7 +162,6 @@ public class HomeRankingActivity extends Activity {
 		entra.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(entra);		
 	}
-	
 	protected void perfil() {
 		// TODO Auto-generated method stub
 		mDrawerLayout.closeDrawer(mDrawerList);
@@ -162,4 +170,10 @@ public class HomeRankingActivity extends Activity {
 		startActivity(entra);		
 	}
 
+	protected void onDestroy() {
+		super.onDestroy();
+	    // Close The Database
+		//userDAO.close();
+		proDAO.close();
+	}
 }

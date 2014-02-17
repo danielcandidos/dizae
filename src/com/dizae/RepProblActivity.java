@@ -6,13 +6,17 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dizae.database.ProblemaDAO;
@@ -21,15 +25,20 @@ import com.dizae.models.entities.Problema;
 
 public class RepProblActivity extends Activity {
 	
+	//Layout
+	private DrawerLayout mDrawerLayout;
+	private LinearLayout mDrawerList;
 	private Spinner aspn;
 	private List<String> categorias = new ArrayList<String>();
 	private String categoria;
 	private ProblemaDAO proDAO;
-	EditText etDescricao;
+	EditText etDescricao, etTitulo;
 	Button btReportar, btLogin;
 	Problema problema;
 	UserDAO userDAO;
 	static String user;
+	// Sidebar Options
+	private TextView side_home, side_nova_ocorrencia, side_conf, side_user_perfil;
 	
 	//Puxa o nome do usuário que vem da Home, que já veio do Login
 	public static void pegarUser(String userName) {
@@ -39,15 +48,20 @@ public class RepProblActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_rep_probl);	
+		setContentView(R.layout.activity_rep_probl);
 		
+		initSideBar();
+		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (LinearLayout) findViewById(R.id.sidebar);
+        
 		proDAO = new ProblemaDAO(this);
 		proDAO.open();
 		
 		userDAO=new UserDAO(this);
 		userDAO=userDAO.open();
-				
-		etDescricao=(EditText)findViewById(R.id.etDescricao);
+		
+		etTitulo=(EditText)findViewById(R.id.etTitulo);
+		etDescricao=(EditText)findViewById(R.id.etDescricao);		
 		
 		categorias.add("Saúde");
 		categorias.add("Educação");
@@ -67,16 +81,14 @@ public class RepProblActivity extends Activity {
 				
 		//Método do Spinner para capturar o item selecionado
 		aspn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-			 
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
 				//pega opcao pela posição
 				categoria = parent.getItemAtPosition(posicao).toString();
 				//imprime um Toast na tela com o opcao que foi selecionado
-				Toast.makeText(RepProblActivity.this, "opcao Selecionado: " + categoria, Toast.LENGTH_LONG).show();
+				Toast.makeText(RepProblActivity.this, "opcao Selecionada: " + categoria, Toast.LENGTH_LONG).show();
 			}
- 
-			@Override
+ 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
  
 			}
@@ -89,6 +101,7 @@ public class RepProblActivity extends Activity {
 			public void onClick(View v) {
 				
 				String descricao=etDescricao.getText().toString();
+				String titulo=etTitulo.getText().toString();
 				
 				if(descricao.equals("")) {
 						Toast.makeText(getApplicationContext(), "Descrição não informada!", Toast.LENGTH_LONG).show();
@@ -97,10 +110,7 @@ public class RepProblActivity extends Activity {
 					Toast.makeText(getApplicationContext(), "Categoria não selecionada!", Toast.LENGTH_LONG).show();
 					return;
 				} else {
-					//não consegui um meio existente de "pegar" o usuario para passar para o problema
-					//User user = new User(); //passando usuario vazio
-					//user = userDAO.getUser(id);
-					problema = new Problema (userDAO.getUser(user), descricao, categoria, "foto", 0, 0);
+					problema = new Problema (userDAO.getUser(user), titulo, descricao, categoria, "foto", 0, 0);
 					proDAO.inserEntry(problema);
 				    Toast.makeText(getApplicationContext(), "Problema cadastrado com Sucesso!", Toast.LENGTH_LONG).show();
 				    chamaRanking();
@@ -118,10 +128,85 @@ public class RepProblActivity extends Activity {
 		});
 	}
 	
+	private void initSideBar(){
+		side_home = (TextView) findViewById(R.id.sidebar_home);
+		side_nova_ocorrencia = (TextView) findViewById(R.id.sidebar_nova_ocorrencia);
+		side_conf = (TextView) findViewById(R.id.sidebar_conf);
+		side_user_perfil = (TextView) findViewById(R.id.sidebar_user_perfil);
+		
+		
+		side_nova_ocorrencia.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				novaOcorrencia();				
+			}
+		});
+		
+		side_home.setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				home();		
+			}
+		});
+		
+		side_conf.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				perfil();
+			}
+		});
+		
+		side_user_perfil.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				conf();
+			}
+		});
+	}
+	
 	public void chamaRanking(){
 		Intent i = new Intent(this, HomeRankingActivity.class);
 		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(i);
+	}
+	
+	protected void novaOcorrencia() {
+		// TODO Auto-generated method stub
+		mDrawerLayout.closeDrawer(mDrawerList);
+		Intent entra = new Intent(this, RepProblActivity.class);
+		entra.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(entra);		
+	}
+	
+	protected void home() {
+		// TODO Auto-generated method stub
+		mDrawerLayout.closeDrawer(mDrawerList);
+		Intent entra = new Intent(this, HomeRankingActivity.class);
+		entra.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(entra);		
+	}
+
+	protected void conf() {
+		// TODO Auto-generated method stub
+		mDrawerLayout.closeDrawer(mDrawerList);
+		Intent entra = new Intent(this, UsuarioActivity.class);
+		entra.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(entra);		
+	}
+	
+	protected void perfil() {
+		// TODO Auto-generated method stub
+		mDrawerLayout.closeDrawer(mDrawerList);
+		Intent entra = new Intent(this, EditarUsuarioActivity.class);
+		entra.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(entra);		
 	}
 	
 	@Override

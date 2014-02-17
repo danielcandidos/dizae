@@ -36,7 +36,7 @@ public final class R {
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f090000;
-        public static final int action_settings=0x7f09002e;
+        public static final int action_settings=0x7f09002d;
         public static final int btActivityCadastrar=0x7f09001c;
         public static final int btActivityLogin=0x7f09001b;
         public static final int btCadastrar=0x7f090002;
@@ -46,7 +46,7 @@ public final class R {
         public static final int btVoltar=0x7f09001e;
         public static final int button1=0x7f090029;
         public static final int button2=0x7f09001d;
-        public static final int cbResolvido=0x7f09002c;
+        public static final int cbResolvido=0x7f09002b;
         public static final int checkBox1=0x7f09001a;
         public static final int content_frame=0x7f09000b;
         public static final int drawer_layout=0x7f09000a;
@@ -59,8 +59,7 @@ public final class R {
         public static final int etNome=0x7f090001;
         public static final int etSenha=0x7f090009;
         public static final int etTitulo=0x7f09001f;
-        public static final int expandableListView1=0x7f090013;
-        public static final int listView1=0x7f09002b;
+        public static final int listView1=0x7f090013;
         public static final int senha=0x7f090017;
         public static final int sidebar=0x7f09000c;
         public static final int sidebar_conf=0x7f09000e;
@@ -80,7 +79,7 @@ public final class R {
         public static final int textView7=0x7f090027;
         public static final int textView8=0x7f090028;
         public static final int textView9=0x7f09002a;
-        public static final int tvProb=0x7f09002d;
+        public static final int tvProb=0x7f09002c;
         public static final int tvProblema=0x7f090004;
     }
     public static final class layout {

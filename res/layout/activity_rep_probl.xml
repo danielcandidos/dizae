@@ -78,7 +78,7 @@
         android:layout_below="@+id/spinner1"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="30dp"
-        android:ems="10"
+        android:ems="10"        
         android:gravity="top|center_vertical"
         android:hint="@string/etDescricao"
         android:inputType="textMultiLine" />
@@ -115,7 +115,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/sidebar_user_email"
+            android:id="@+id/sidebar_home"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/sidebar_heigth"
             android:drawableLeft="@drawable/ic_action_home"
