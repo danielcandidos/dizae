@@ -27,7 +27,7 @@ public class HomeRankingActivity extends Activity {
 	private List<String> listaSelecione = new ArrayList<String>();
 	private String opcao;
 	// Sidebar Options
-	TextView side_home, side_nova_ocorrencia;
+	TextView side_home, side_nova_ocorrencia, side_conf, side_user_perfil;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +79,9 @@ public class HomeRankingActivity extends Activity {
 	private void initSideBar(){
 		side_home = (TextView) findViewById(R.id.sidebar_home);
 		side_nova_ocorrencia = (TextView) findViewById(R.id.sidebar_nova_ocorrencia);
+		side_conf = (TextView) findViewById(R.id.sidebar_conf);
+		side_user_perfil = (TextView) findViewById(R.id.sidebar_user_perfil);
+		
 		
 		side_nova_ocorrencia.setOnClickListener(new OnClickListener() {
 			
@@ -90,12 +93,71 @@ public class HomeRankingActivity extends Activity {
 				
 			}
 		});
+		
+		side_home.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				home();
+				
+				
+			}
+		});
+		
+		side_conf.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				conf();
+
+
+			}
+		});
+		
+		side_user_perfil.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				perfil();
+
+
+			}
+		});
+
+
 	}
 
 	protected void novaOcorrencia() {
 		// TODO Auto-generated method stub
 		mDrawerLayout.closeDrawer(mDrawerList);
 		Intent entra = new Intent(this, RepProblActivity.class);
+		entra.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(entra);		
+	}
+	
+	protected void home() {
+		// TODO Auto-generated method stub
+		mDrawerLayout.closeDrawer(mDrawerList);
+		Intent entra = new Intent(this, HomeRankingActivity.class);
+		entra.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(entra);		
+	}
+
+	protected void conf() {
+		// TODO Auto-generated method stub
+		mDrawerLayout.closeDrawer(mDrawerList);
+		Intent entra = new Intent(this, UsuarioActivity.class);
+		entra.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(entra);		
+	}
+	
+	protected void perfil() {
+		// TODO Auto-generated method stub
+		mDrawerLayout.closeDrawer(mDrawerList);
+		Intent entra = new Intent(this, EditarUsuarioActivity.class);
 		entra.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(entra);		
 	}

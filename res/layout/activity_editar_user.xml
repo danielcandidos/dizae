@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/etConSenha"
         android:layout_below="@+id/etConSenha"
-        android:layout_marginRight="140dp"
+        android:layout_marginRight="160dp"
         android:layout_marginTop="70dp"
         android:text="@string/btConfirmar" />
 
@@ -100,7 +100,7 @@
         android:layout_alignBaseline="@+id/btCadastrar"
         android:layout_alignBottom="@+id/btCadastrar"
         android:layout_alignRight="@+id/etNome"
-        android:layout_marginLeft="150dp"
+        android:layout_marginLeft="160dp"
         android:text="@string/btCancelar" />
 
 </RelativeLayout>
