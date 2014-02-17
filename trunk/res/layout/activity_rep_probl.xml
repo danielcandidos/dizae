@@ -55,6 +55,20 @@
         android:textStyle="bold" />
 
     <EditText
+        android:id="@+id/etTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/spinner1"
+        android:layout_alignRight="@+id/spinner1"
+        android:layout_below="@+id/spinner1"
+        android:layout_marginTop="3dp"
+        android:ems="10"
+        android:gravity="top|center_vertical"
+        android:hint="@string/etTitulo"
+        android:inputType="textMultiLine" />
+    
+    
+    <EditText
         android:id="@+id/etDescricao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,7 +77,7 @@
         android:layout_alignRight="@+id/spinner1"
         android:layout_below="@+id/spinner1"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:gravity="top|center_vertical"
         android:hint="@string/etDescricao"
