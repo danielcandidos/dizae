@@ -85,7 +85,7 @@ public class HomeRankingActivity extends Activity {
 		//Listagem dos titulos dos problemas com retorno (falho) do banco		
 		////listaTemp = proDAO.getListarTudo();
 		//Titulos default
-		listaTemp.add("TITULO"); listaTemp.add("TITULO"); listaTemp.add("TITULO"); listaTemp.add("TITULO");
+		listaTemp.add("TITULO 01"); listaTemp.add("TITULO 02"); listaTemp.add("TITULO 03"); listaTemp.add("TITULO 04");
 		listaProb = (ListView) findViewById(R.id.listView1);
 		ArrayAdapter<String> arrayAdapterLista = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, listaTemp);
 		spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
