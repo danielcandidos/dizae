@@ -19,19 +19,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/tvProb"
+        android:layout_alignRight="@+id/tvProb"        
         android:layout_marginBottom="15dp"
         android:text="@string/cbResolvido" />
-
-    <Spinner
-        android:id="@+id/spinner1"
+	
+    <TextView 
+        android:id="@+id/tvTitulo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/btLogin"
-        android:layout_marginTop="20dp"
-        android:text="@string/spCategorias"
-        android:textStyle="bold" />
+        android:layout_marginTop="10dp"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        android:text="@string/tvTitulo"
+        android:textStyle="bold"/>
+    
 
     <Button
         android:id="@+id/btLogin"
@@ -41,7 +44,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="51dp"
+        android:layout_marginTop="10dp"
         android:text="@string/btVerLista"
         android:textStyle="bold" />
 
@@ -49,10 +52,9 @@
         android:id="@+id/tvProb"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/spinner1"
+        android:layout_below="@+id/tvTitulo"
         android:layout_centerHorizontal="true"
-        android:layout_margin="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_margin="35dp"
         android:ems="10"
         android:hint="@string/tvProb" />
 

@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -81,15 +82,26 @@ public class HomeRankingActivity extends Activity {
 			}
 		});
 		
-		//Listagem dos titulos dos problemas com retorno (falho) do banco
-		
-		//listaTemp = proDAO.getListarTudo();
+		//Listagem dos titulos dos problemas com retorno (falho) do banco		
+		////listaTemp = proDAO.getListarTudo();
+		//Titulos default
 		listaTemp.add("TITULO"); listaTemp.add("TITULO"); listaTemp.add("TITULO"); listaTemp.add("TITULO");
 		listaProb = (ListView) findViewById(R.id.listView1);
 		ArrayAdapter<String> arrayAdapterLista = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, listaTemp);
 		spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
-		listaProb.setAdapter(arrayAdapterLista);		
+		listaProb.setAdapter(arrayAdapterLista);
 		
+		//Metodo para abrir janela do problema selecionado
+		listaProb.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick (AdapterView<?> adapter, View v, int pos, long a) {
+				// TODO Auto-generated method stub
+				String tittle = adapter.getItemAtPosition(pos).toString();				
+				Toast.makeText(HomeRankingActivity.this, "Problema selecionado: " + tittle, Toast.LENGTH_LONG).show();
+				chamaProblema(tittle);
+			}			
+		});
+
 	}
 
 	@Override
@@ -97,6 +109,15 @@ public class HomeRankingActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.lista_recl, menu);
 		return true;
+	}
+	
+	private void chamaProblema(String titulo){
+		Intent i = new Intent(this, VisProblActivity.class);
+		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		Bundle params = new Bundle();
+		params.putString("titulo", titulo);
+		i.putExtras(params);
+		startActivity(i);
 	}
 	
 	private void initSideBar(){
