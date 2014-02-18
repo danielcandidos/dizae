@@ -50,6 +50,10 @@
             android:name="com.dizae.RecActivity"
             android:label="@string/title_activity_rec" >
         </activity>
+        <activity
+            android:name="com.dizae.VisProblActivity"
+            android:label="@string/title_activity_vis_probl" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

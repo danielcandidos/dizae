@@ -36,7 +36,7 @@ public final class R {
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f090000;
-        public static final int action_settings=0x7f09002d;
+        public static final int action_settings=0x7f09002e;
         public static final int btActivityCadastrar=0x7f09001c;
         public static final int btActivityLogin=0x7f09001b;
         public static final int btCadastrar=0x7f090002;
@@ -81,6 +81,7 @@ public final class R {
         public static final int textView9=0x7f09002a;
         public static final int tvProb=0x7f09002c;
         public static final int tvProblema=0x7f090004;
+        public static final int tvTitulo=0x7f09002d;
     }
     public static final class layout {
         public static final int activity_cadastro=0x7f030000;
@@ -100,6 +101,7 @@ public final class R {
         public static final int login=0x7f080004;
         public static final int main=0x7f080005;
         public static final int usuario=0x7f080006;
+        public static final int vis_probl=0x7f080007;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
@@ -129,6 +131,7 @@ public final class R {
         public static final int etSenha=0x7f06000f;
         public static final int etTitulo=0x7f060033;
         public static final int fotovideo=0x7f060015;
+        public static final int hello_world=0x7f060035;
         public static final int home=0x7f060008;
         public static final int info_cpf=0x7f06001f;
         public static final int info_email=0x7f06001d;
@@ -149,11 +152,13 @@ public final class R {
         public static final int title_activity_lista_recl=0x7f060017;
         public static final int title_activity_rec=0x7f06002b;
         public static final int title_activity_usuario=0x7f06001b;
+        public static final int title_activity_vis_probl=0x7f060034;
         public static final int tvCondicao=0x7f060028;
         public static final int tvProb=0x7f060029;
         public static final int tvProblema=0x7f060012;
         public static final int tvRanking=0x7f060006;
         public static final int tvResolvidoLista=0x7f060031;
+        public static final int tvTitulo=0x7f060036;
     }
     public static final class style {
         /** 

@@ -44,7 +44,7 @@
     <string name="tvCondicao"></string>
     <string name="tvProb">Descrição do Problema</string>
     <string name="cbResolvido">Marque para Resolvido</string>
-    <string name="title_activity_rec">RecActivity</string>        
+    <string name="title_activity_rec">RecActivity</string>
     <string name="sidebar_home">Home</string>
     <string name="sidebar_config">Configurações</string>
     <string name="sidebar_perfil">Perfil do Usuário</string>
@@ -53,4 +53,8 @@
     <string name="tvResolvidoLista">Resolvido</string>
     <string name="btCadastro">Cadastrar</string>
     <string name="etTitulo">Dê um título a sua reclamação</string>
+    <string name="title_activity_vis_probl">VisProblActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="tvTitulo">Titulo da Reclamação</string>
+
 </resources>
