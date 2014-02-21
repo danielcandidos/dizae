@@ -52,10 +52,12 @@ public class HomeRankingActivity extends Activity {
         proDAO = new ProblemaDAO(this);
 		proDAO.open();
         
-        listaSelecione.add("Selecione");
-		listaSelecione.add("Mais recentes");
-		listaSelecione.add("Seu bairro");
-		listaSelecione.add("Ranking 10");
+		listaSelecione.add("Saúde");
+		listaSelecione.add("Educação");
+		listaSelecione.add("Segurança");
+		listaSelecione.add("Transporte");
+		listaSelecione.add("Iluminação pública");
+		listaSelecione.add("Limpeza urbana");
 				
 		//Identifica o Spinner no layout
 		aspn = (Spinner) findViewById(R.id.spinner1);
