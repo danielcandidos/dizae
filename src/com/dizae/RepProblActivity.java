@@ -3,6 +3,10 @@ package com.dizae;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.R.bool;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,8 +26,11 @@ import android.widget.Toast;
 import com.dizae.database.ProblemaDAO;
 import com.dizae.database.UserDAO;
 import com.dizae.models.entities.Problema;
+import com.dizae.tasks.ProblemasAsyncTask;
+import com.dizae.tasks.ProblemasAsyncTask.ProblemasAction;
+import com.dizae.tasks.ProblemasAsyncTask.ProblemasListener;
 
-public class RepProblActivity extends Activity {
+public class RepProblActivity extends Activity implements ProblemasListener{
 	
 	//Layout
 	private DrawerLayout mDrawerLayout;
@@ -102,6 +109,7 @@ public class RepProblActivity extends Activity {
 				
 				String descricao=etDescricao.getText().toString();
 				String titulo=etTitulo.getText().toString();
+				String categoria = (String) aspn.getSelectedItem();
 				
 				if(descricao.equals("")) {
 						Toast.makeText(getApplicationContext(), "Descrição não informada!", Toast.LENGTH_LONG).show();
@@ -110,10 +118,19 @@ public class RepProblActivity extends Activity {
 					Toast.makeText(getApplicationContext(), "Categoria não selecionada!", Toast.LENGTH_LONG).show();
 					return;
 				} else {
-					problema = new Problema (userDAO.getUser(user), titulo, descricao, categoria, "foto", 0, 0);
-					proDAO.inserEntry(problema);
-				    Toast.makeText(getApplicationContext(), "Problema cadastrado com Sucesso!", Toast.LENGTH_LONG).show();
-				    chamaRanking();
+					//problema = new Problema (userDAO.getUser(user), titulo, descricao, categoria, "foto", 0, 0);
+					//proDAO.inserEntry(problema);
+				    //Toast.makeText(getApplicationContext(), "Problema cadastrado com Sucesso!", Toast.LENGTH_LONG).show();
+				    //chamaRanking();
+					Problema p = new Problema();
+					p.setTitulo(titulo);
+					p.setCategoria(categoria);
+					p.setDescricao(descricao);
+					p.setLongitude(0);
+					p.setLatitude(0);
+					
+					
+					new ProblemasAsyncTask(RepProblActivity.this,ProblemasAction.CASDASTRAR,p).execute();
 				}
 			}
 		});
@@ -221,6 +238,33 @@ public class RepProblActivity extends Activity {
 	    // Close The Database
 		userDAO.close();
 		proDAO.close();
+	}
+
+	@Override
+	public void onSalvaProblema(JSONObject object) {
+		// TODO Auto-generated method stub
+		try {
+			boolean error = object.getBoolean("error");
+			if(!error){
+				chamaRanking();
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void onEditarProblema(JSONObject object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onBuscarProblema(JSONObject object) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

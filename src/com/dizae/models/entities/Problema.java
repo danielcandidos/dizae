@@ -21,6 +21,10 @@ public class Problema {
 		this.longitude = lo;
 	}
 	
+	public Problema() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}
