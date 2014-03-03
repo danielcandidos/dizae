@@ -107,31 +107,7 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 			
 			public void onClick(View v) {
 				
-				String descricao=etDescricao.getText().toString();
-				String titulo=etTitulo.getText().toString();
-				String categoria = (String) aspn.getSelectedItem();
-				
-				if(descricao.equals("")) {
-						Toast.makeText(getApplicationContext(), "Descrição não informada!", Toast.LENGTH_LONG).show();
-						return;
-				} if(categoria.equals("")) {
-					Toast.makeText(getApplicationContext(), "Categoria não selecionada!", Toast.LENGTH_LONG).show();
-					return;
-				} else {
-					//problema = new Problema (userDAO.getUser(user), titulo, descricao, categoria, "foto", 0, 0);
-					//proDAO.inserEntry(problema);
-				    //Toast.makeText(getApplicationContext(), "Problema cadastrado com Sucesso!", Toast.LENGTH_LONG).show();
-				    //chamaRanking();
-					Problema p = new Problema();
-					p.setTitulo(titulo);
-					p.setCategoria(categoria);
-					p.setDescricao(descricao);
-					p.setLongitude(0);
-					p.setLatitude(0);
-					
-					
-					new ProblemasAsyncTask(RepProblActivity.this,ProblemasAction.CASDASTRAR,p).execute();
-				}
+				registarProblema();
 			}
 		});
 		
@@ -145,6 +121,36 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 		});
 	}
 	
+	protected void registarProblema() {
+		// TODO Auto-generated method stub
+		String descricao=etDescricao.getText().toString();
+		String titulo=etTitulo.getText().toString();
+		String categoria = (String) aspn.getSelectedItem();
+		
+		if(descricao.equals("")) {
+				Toast.makeText(getApplicationContext(), "Descrição não informada!", Toast.LENGTH_LONG).show();
+				return;
+		} if(categoria.equals("")) {
+			Toast.makeText(getApplicationContext(), "Categoria não selecionada!", Toast.LENGTH_LONG).show();
+			return;
+		} else {
+			//problema = new Problema (userDAO.getUser(user), titulo, descricao, categoria, "foto", 0, 0);
+			//proDAO.inserEntry(problema);
+		    //Toast.makeText(getApplicationContext(), "Problema cadastrado com Sucesso!", Toast.LENGTH_LONG).show();
+		    //chamaRanking();
+			Problema p = new Problema();
+			p.setTitulo(titulo);
+			p.setCategoria(categoria);
+			p.setDescricao(descricao);
+			p.setLongitude(0);
+			p.setLatitude(0);
+			
+			
+			new ProblemasAsyncTask(this,ProblemasAction.CASDASTRAR,p).execute();
+		}
+		
+	}
+
 	private void initSideBar(){
 		side_home = (TextView) findViewById(R.id.sidebar_home);
 		side_nova_ocorrencia = (TextView) findViewById(R.id.sidebar_nova_ocorrencia);
@@ -263,6 +269,18 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 
 	@Override
 	public void onBuscarProblema(JSONObject object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onBuscarProblemaTodos(JSONObject object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onbuscarProblemaCategoria(JSONObject object) {
 		// TODO Auto-generated method stub
 		
 	}
