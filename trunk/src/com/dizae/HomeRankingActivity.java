@@ -1,10 +1,18 @@
 package com.dizae;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.dizae.database.ProblemaDAO;
 import com.dizae.models.entities.Problema;
+import com.dizae.tasks.ProblemasAsyncTask;
+import com.dizae.tasks.ProblemasAsyncTask.ProblemasAction;
+import com.dizae.tasks.ProblemasAsyncTask.ProblemasListener;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,12 +26,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class HomeRankingActivity extends Activity {
+public class HomeRankingActivity extends Activity implements ProblemasListener {
 	
 	//Layout
 	private DrawerLayout mDrawerLayout;
@@ -87,11 +96,13 @@ public class HomeRankingActivity extends Activity {
 		//Listagem dos titulos dos problemas com retorno (falho) do banco		
 		////listaTemp = proDAO.getListarTudo();
 		//Titulos default
-		listaTemp.add("TITULO 01"); listaTemp.add("TITULO 02"); listaTemp.add("TITULO 03"); listaTemp.add("TITULO 04");
+		//listaTemp.add("TITULO 01"); listaTemp.add("TITULO 02"); listaTemp.add("TITULO 03"); listaTemp.add("TITULO 04");
 		listaProb = (ListView) findViewById(R.id.listView1);
-		ArrayAdapter<String> arrayAdapterLista = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, listaTemp);
-		spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
-		listaProb.setAdapter(arrayAdapterLista);
+		//ArrayAdapter<String> arrayAdapterLista = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, listaTemp);
+		//spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+		//listaProb.setAdapter(arrayAdapterLista);
+		
+		new ProblemasAsyncTask(this,ProblemasAction.BUSCAR_TODOS,"").execute();
 		
 		//Metodo para abrir janela do problema selecionado
 		listaProb.setOnItemClickListener(new OnItemClickListener(){
@@ -120,6 +131,12 @@ public class HomeRankingActivity extends Activity {
 		params.putString("titulo", titulo);
 		i.putExtras(params);
 		startActivity(i);
+	}
+	
+	public void buscarProblemas(){
+		
+		new ProblemasAsyncTask(this, ProblemasAction.BUSCAR_TODOS,"");
+		
 	}
 	
 	private void initSideBar(){
@@ -198,5 +215,62 @@ public class HomeRankingActivity extends Activity {
 	    // Close The Database
 		//userDAO.close();
 		proDAO.close();
+	}
+
+	@Override
+	public void onSalvaProblema(JSONObject object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onEditarProblema(JSONObject object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onBuscarProblema(JSONObject object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onBuscarProblemaTodos(JSONObject object) {
+		// TODO Auto-generated method stub
+		preencherLista(object);
+		
+		
+	}
+
+	private void preencherLista(JSONObject object) {
+		// TODO Auto-generated method stub
+		listaProb.setAdapter(null);
+		String[] from = new String[] { "title", "description" };
+	    int[] to = new int[] { R.id.title, R.id.description };
+	    List<HashMap<String, Object>> fillMaps = new ArrayList<HashMap<String, Object>>();
+		try {
+			JSONArray problemas = object.getJSONArray("problemas");
+			for (int i =0;i<problemas.length();i++) {
+				JSONObject problema = problemas.getJSONObject(i);
+				HashMap<String, Object> map = new HashMap<String, Object>();
+				map.put("title", problema.getString("titulo")); // This will be shown in R.id.title
+			    map.put("description", problema.getString("descricao")); // And this in R.id.description
+			    fillMaps.add(map);
+				
+			}
+			SimpleAdapter adapter = new SimpleAdapter(this, fillMaps, R.layout.adater_problema, from, to);
+			listaProb.setAdapter(adapter);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void onbuscarProblemaCategoria(JSONObject object) {
+		// TODO Auto-generated method stub
+		
 	}
 }

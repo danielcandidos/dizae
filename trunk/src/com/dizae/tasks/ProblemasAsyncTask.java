@@ -46,9 +46,17 @@ public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return null;
+				
 			}
 			
 		}
+		
+		if(action ==ProblemasAction.BUSCAR_TODOS){
+			actionString = "todos";
+		}
+		
+		
 		try {
 			String stringResult = conexaoHttpClient.executaHttpGet(URL_STRING+actionString);
 			JSONObject object = new JSONObject(stringResult);
@@ -57,9 +65,9 @@ public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-
-		return null;
+		
 	}
 
 	protected void onPostExecute(JSONObject result){
@@ -69,16 +77,22 @@ public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 		if(action==ProblemasAction.EDITAR){
 			listener.onBuscarProblema(result);
 		}
+		if(action==ProblemasAction.BUSCAR_TODOS){
+			listener.onBuscarProblemaTodos(result);
+		}
+		
 	}
 
 	public interface ProblemasListener{
 		void onSalvaProblema(JSONObject object);
 		void onEditarProblema(JSONObject object);
-		void onBuscarProblema(JSONObject object);		
+		void onBuscarProblema(JSONObject object);
+		void onBuscarProblemaTodos(JSONObject object);
+		void onbuscarProblemaCategoria(JSONObject object);
 	}
 
 	public enum ProblemasAction{
-		CASDASTRAR,EDITAR,BUSCAR;
+		CASDASTRAR,EDITAR,BUSCAR,BUSCAR_TODOS,BUSCAR_CATEGORIA;
 	}
 
 }
