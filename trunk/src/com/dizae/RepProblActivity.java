@@ -280,7 +280,14 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 	}
 
 	@Override
-	public void onbuscarProblemaCategoria(JSONObject object) {
+	public void onBuscarProblemaCategoria(JSONObject object) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+	@Override
+	public void onGetCategorias(JSONObject object) {
 		// TODO Auto-generated method stub
 		
 	}
