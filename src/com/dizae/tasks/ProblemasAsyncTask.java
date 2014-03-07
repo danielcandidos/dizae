@@ -19,7 +19,7 @@ public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 	private ConexaoHttpClient conexaoHttpClient;
 	private ProblemasAction action;
 	private Problema problema;
-	private int categoriaId;
+	private int id;
 
 	public ProblemasAsyncTask(ProblemasListener listener,ProblemasAction action,Problema problema){
 		this.listener = listener;
@@ -34,11 +34,11 @@ public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 		conexaoHttpClient = new ConexaoHttpClient();	
 	}
 
-	public ProblemasAsyncTask(ProblemasListener listener,ProblemasAction action,int categoriaId) {
+	public ProblemasAsyncTask(ProblemasListener listener,ProblemasAction action,int id) {
 		// TODO Auto-generated constructor stub
 		this.listener = listener;
 		this.action = action;
-		this.categoriaId =categoriaId;
+		this.id =id;
 		conexaoHttpClient = new ConexaoHttpClient();
 	}
 
@@ -71,7 +71,11 @@ public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 		}
 		
 		if(action == ProblemasAction.BUSCAR_POR_CATEGORIA){
-			actionString = "categoria/"+categoriaId;
+			actionString = "categoria/"+id;
+		}
+		
+		if(action== ProblemasAction.BUSCAR_PROBLEMA){
+			actionString = "problema/"+id;
 		}
 		
 		
@@ -104,6 +108,9 @@ public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 		if(action==ProblemasAction.BUSCAR_POR_CATEGORIA){
 			listener.onBuscarProblemaCategoria(result);
 		}
+		if(action== ProblemasAction.BUSCAR_PROBLEMA){
+			listener.onBuscarProblema(result);
+		}
 		
 	}
 
@@ -117,7 +124,7 @@ public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 	}
 
 	public enum ProblemasAction{
-		CASDASTRAR,EDITAR,BUSCAR,BUSCAR_TODOS,BUSCAR_POR_CATEGORIA,BUSCAR_CATEGORIAS;
+		CASDASTRAR,EDITAR,BUSCAR,BUSCAR_TODOS,BUSCAR_POR_CATEGORIA,BUSCAR_CATEGORIAS,BUSCAR_PROBLEMA;
 	}
 
 }

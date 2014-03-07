@@ -44,6 +44,7 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 	private List<String> listaSelecione = new ArrayList<String>();
 	private ArrayList<String> listaTemp = new ArrayList<String>();
 	private Map<Integer,Integer> categoriaMap ;
+	private Map<Integer,Integer> problemaMap;
 	private String opcao;
 	// Sidebar Options
 	private TextView side_home, side_nova_ocorrencia, side_conf, side_user_perfil;
@@ -87,7 +88,8 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 				// TODO Auto-generated method stub
 				String tittle = adapter.getItemAtPosition(pos).toString();				
 				Toast.makeText(HomeRankingActivity.this, "Problema selecionado: " + tittle, Toast.LENGTH_LONG).show();
-				chamaProblema(tittle);
+				//chamaProblema(tittle);
+				mostrarProblema(problemaMap.get(pos));
 			}			
 		});
 
@@ -106,6 +108,12 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 		Bundle params = new Bundle();
 		params.putString("titulo", titulo);
 		i.putExtras(params);
+		startActivity(i);
+	}
+	
+	private void mostrarProblema(int problemaId){
+		Intent i = new Intent(getApplicationContext(), VisProblActivity.class);
+		i.putExtra("problemaId",problemaId);
 		startActivity(i);
 	}
 
@@ -275,6 +283,7 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 
 	private void preencherLista(JSONObject object) {
 		// TODO Auto-generated method stub
+		problemaMap = new HashMap<Integer,Integer>();
 		listaProb.setAdapter(null);
 		String[] from = new String[] { "title", "description" };
 		int[] to = new int[] { R.id.title, R.id.description };
@@ -282,7 +291,10 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 		try {
 			JSONArray problemas = object.getJSONArray("problemas");
 			for (int i =0;i<problemas.length();i++) {
+				
+				
 				JSONObject problema = problemas.getJSONObject(i);
+				problemaMap.put(i,problema.getInt("id"));
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				map.put("title", problema.getString("titulo")); // This will be shown in R.id.title
 				map.put("description", problema.getString("descricao")); // And this in R.id.description
