@@ -1,8 +1,10 @@
 package com.dizae;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,7 +38,7 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 	private DrawerLayout mDrawerLayout;
 	private LinearLayout mDrawerList;
 	private Spinner aspn;
-	private List<String> categorias = new ArrayList<String>();
+	private List<String> categoriasList = new ArrayList<String>();
 	private String categoria;
 	private ProblemaDAO proDAO;
 	EditText etDescricao, etTitulo;
@@ -46,6 +48,7 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 	static String user;
 	// Sidebar Options
 	private TextView side_home, side_nova_ocorrencia, side_conf, side_user_perfil;
+	private HashMap<Integer, Integer> categoriaMap;
 	
 	//Puxa o nome do usuário que vem da Home, que já veio do Login
 	public static void pegarUser(String userName) {
@@ -70,36 +73,14 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 		etTitulo=(EditText)findViewById(R.id.etTitulo);
 		etDescricao=(EditText)findViewById(R.id.etDescricao);		
 		
-		categorias.add("Saúde");
-		categorias.add("Educação");
-		categorias.add("Segurança");
-		categorias.add("Transporte");
-		categorias.add("Iluminação pública");
-		categorias.add("Limpeza urbana");
-				
+						
  
 		//Identifica o Spinner no layout
 		aspn = (Spinner) findViewById(R.id.spinner1);
 		//Cria um ArrayAdapter usando um padrão de layout da classe R do android, passando o ArrayList listaSelecione
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, categorias);
-		ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
-		spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-		aspn.setAdapter(spinnerArrayAdapter);
+		
 				
-		//Método do Spinner para capturar o item selecionado
-		aspn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
-				//pega opcao pela posição
-				categoria = parent.getItemAtPosition(posicao).toString();
-				//imprime um Toast na tela com o opcao que foi selecionado
-				Toast.makeText(RepProblActivity.this, "opcao Selecionada: " + categoria, Toast.LENGTH_LONG).show();
-			}
- 			@Override
-			public void onNothingSelected(AdapterView<?> parent) {
- 
-			}
-		});
+		new ProblemasAsyncTask(this,ProblemasAction.BUSCAR_CATEGORIAS,"").execute();
 		
 		//metodo que conecta o layout de reportar problema com a função já existente no banco
 		btReportar=(Button)findViewById(R.id.btVoltar);
@@ -125,7 +106,7 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 		// TODO Auto-generated method stub
 		String descricao=etDescricao.getText().toString();
 		String titulo=etTitulo.getText().toString();
-		String categoria = (String) aspn.getSelectedItem();
+		String categoria = String.valueOf(categoriaMap.get(aspn.getSelectedItemPosition()));
 		
 		if(descricao.equals("")) {
 				Toast.makeText(getApplicationContext(), "Descrição não informada!", Toast.LENGTH_LONG).show();
@@ -149,6 +130,40 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 			new ProblemasAsyncTask(this,ProblemasAction.CASDASTRAR,p).execute();
 		}
 		
+	}
+	
+	private void preencherCategorias(JSONObject object){
+
+		try {
+			categoriaMap = new HashMap<Integer,Integer>();
+			
+			
+			categoriasList.clear();
+			
+			JSONArray categorias = object.getJSONArray("categorias");
+			
+			for (int i =0;i<categorias.length();i++) {
+				
+				JSONObject categoria = categorias.getJSONObject(i);
+				categoriaMap.put(i,categoria.getInt("id") );
+				categoriasList.add(categoria.getString("nome"));
+			}
+
+			//Identifica o Spinner no layout
+			aspn = (Spinner) findViewById(R.id.spinner1);
+			//Cria um ArrayAdapter usando um padrão de layout da classe R do android, passando o ArrayList listaSelecione
+			ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, categoriasList);
+			ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
+			spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+			aspn.setAdapter(spinnerArrayAdapter);
+			
+			
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	private void initSideBar(){
@@ -289,7 +304,7 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 	@Override
 	public void onGetCategorias(JSONObject object) {
 		// TODO Auto-generated method stub
-		
+		preencherCategorias(object);
 	}
 }
 
