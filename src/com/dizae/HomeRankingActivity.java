@@ -3,6 +3,7 @@ package com.dizae;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,66 +34,40 @@ import android.widget.Toast;
 
 
 public class HomeRankingActivity extends Activity implements ProblemasListener {
-	
+
 	//Layout
 	private DrawerLayout mDrawerLayout;
-    private LinearLayout mDrawerList;
-    //
-    private ListView listaProb;
+	private LinearLayout mDrawerList;
+	//
+	private ListView listaProb;
 	private Spinner aspn;
 	private List<String> listaSelecione = new ArrayList<String>();
 	private ArrayList<String> listaTemp = new ArrayList<String>();
+	private Map<Integer,Integer> categoriaMap ;
 	private String opcao;
 	// Sidebar Options
 	private TextView side_home, side_nova_ocorrencia, side_conf, side_user_perfil;
 	//
 	private ProblemaDAO proDAO;
 	private Problema problema;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_ranking);
-		
+
 		initSideBar();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (LinearLayout) findViewById(R.id.sidebar);
-		
-        proDAO = new ProblemaDAO(this);
+		mDrawerList = (LinearLayout) findViewById(R.id.sidebar);
+
+		proDAO = new ProblemaDAO(this);
 		proDAO.open();
-        
-		listaSelecione.add("Saúde");
-		listaSelecione.add("Educação");
-		listaSelecione.add("Segurança");
-		listaSelecione.add("Transporte");
-		listaSelecione.add("Iluminação pública");
-		listaSelecione.add("Limpeza urbana");
-				
-		//Identifica o Spinner no layout
-		aspn = (Spinner) findViewById(R.id.spinner1);
-		//Cria um ArrayAdapter usando um padrão de layout da classe R do android, passando o ArrayList listaSelecione
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, listaSelecione);
-		ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
-		spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-		aspn.setAdapter(spinnerArrayAdapter);
-		
+
+
+
 		//Método do Spinner para capturar o item selecionado
-		aspn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {		 
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
-				//pega opcao pela posição
-				opcao = parent.getItemAtPosition(posicao).toString();
-				//imprime um Toast na tela com o opcao que foi selecionado
-				if (opcao != "Selecione"){
-					Toast.makeText(HomeRankingActivity.this, "opcao Selecionada: " + opcao, Toast.LENGTH_LONG).show();
-				}	
-			}		
-			@Override
-			public void onNothingSelected(AdapterView<?> parent) {
-		 
-			}
-		});
 		
+
 		//Listagem dos titulos dos problemas com retorno (falho) do banco		
 		////listaTemp = proDAO.getListarTudo();
 		//Titulos default
@@ -101,9 +76,10 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 		//ArrayAdapter<String> arrayAdapterLista = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, listaTemp);
 		//spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
 		//listaProb.setAdapter(arrayAdapterLista);
-		
+
 		new ProblemasAsyncTask(this,ProblemasAction.BUSCAR_TODOS,"").execute();
-		
+		new ProblemasAsyncTask(this,ProblemasAction.BUSCAR_CATEGORIAS,"").execute();
+
 		//Metodo para abrir janela do problema selecionado
 		listaProb.setOnItemClickListener(new OnItemClickListener(){
 			@Override
@@ -123,7 +99,7 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 		getMenuInflater().inflate(R.menu.lista_recl, menu);
 		return true;
 	}
-	
+
 	private void chamaProblema(String titulo){
 		Intent i = new Intent(this, VisProblActivity.class);
 		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -132,20 +108,20 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 		i.putExtras(params);
 		startActivity(i);
 	}
-	
+
 	public void buscarProblemas(){
-		
-		new ProblemasAsyncTask(this, ProblemasAction.BUSCAR_TODOS,"");
-		
+
+		new ProblemasAsyncTask(this, ProblemasAction.BUSCAR_TODOS,"").execute();
+
 	}
-	
+
 	private void initSideBar(){
 		side_home = (TextView) findViewById(R.id.sidebar_home);
 		side_nova_ocorrencia = (TextView) findViewById(R.id.sidebar_nova_ocorrencia);
 		side_conf = (TextView) findViewById(R.id.sidebar_conf);
 		side_user_perfil = (TextView) findViewById(R.id.sidebar_user_perfil);
-		
-		
+
+
 		side_nova_ocorrencia.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View v) {
@@ -153,7 +129,7 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 				novaOcorrencia();				
 			}
 		});
-		
+
 		side_home.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View v) {
@@ -161,7 +137,7 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 				home();		
 			}
 		});
-		
+
 		side_conf.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -169,7 +145,7 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 				perfil();
 			}
 		});
-		
+
 		side_user_perfil.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -186,7 +162,7 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 		entra.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(entra);		
 	}
-	
+
 	protected void home() {
 		// TODO Auto-generated method stub
 		mDrawerLayout.closeDrawer(mDrawerList);
@@ -212,7 +188,7 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 
 	protected void onDestroy() {
 		super.onDestroy();
-	    // Close The Database
+		// Close The Database
 		//userDAO.close();
 		proDAO.close();
 	}
@@ -220,26 +196,80 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 	@Override
 	public void onSalvaProblema(JSONObject object) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onEditarProblema(JSONObject object) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onBuscarProblema(JSONObject object) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onBuscarProblemaTodos(JSONObject object) {
 		// TODO Auto-generated method stub
 		preencherLista(object);
-		
+
+
+	}
+
+	private void preencherCategorias(JSONObject object){
+
+		try {
+			categoriaMap = new HashMap<Integer,Integer>();
+			
+			
+			listaSelecione.clear();
+			listaSelecione.add("todos");
+			JSONArray categorias = object.getJSONArray("categorias");
+			
+			for (int i =0;i<categorias.length();i++) {
+				
+				JSONObject categoria = categorias.getJSONObject(i);
+				categoriaMap.put(i+1,categoria.getInt("id") );
+				listaSelecione.add(categoria.getString("nome"));
+			}
+
+			//Identifica o Spinner no layout
+			aspn = (Spinner) findViewById(R.id.spinner1);
+			//Cria um ArrayAdapter usando um padrão de layout da classe R do android, passando o ArrayList listaSelecione
+			ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, listaSelecione);
+			ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
+			spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+			aspn.setAdapter(spinnerArrayAdapter);
+			
+			aspn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {		 
+				@Override
+				public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
+					if(posicao>0){
+						
+						buscarPorcategoria(categoriaMap.get(posicao));
+					}else{
+						buscarProblemas();
+					}
+				}		
+				@Override
+				public void onNothingSelected(AdapterView<?> parent) {
+
+				}
+			});
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	protected void buscarPorcategoria(Integer integer) {
+		// TODO Auto-generated method stub
+		new ProblemasAsyncTask(this, ProblemasAction.BUSCAR_POR_CATEGORIA, integer).execute();
 		
 	}
 
@@ -247,17 +277,17 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 		// TODO Auto-generated method stub
 		listaProb.setAdapter(null);
 		String[] from = new String[] { "title", "description" };
-	    int[] to = new int[] { R.id.title, R.id.description };
-	    List<HashMap<String, Object>> fillMaps = new ArrayList<HashMap<String, Object>>();
+		int[] to = new int[] { R.id.title, R.id.description };
+		List<HashMap<String, Object>> fillMaps = new ArrayList<HashMap<String, Object>>();
 		try {
 			JSONArray problemas = object.getJSONArray("problemas");
 			for (int i =0;i<problemas.length();i++) {
 				JSONObject problema = problemas.getJSONObject(i);
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				map.put("title", problema.getString("titulo")); // This will be shown in R.id.title
-			    map.put("description", problema.getString("descricao")); // And this in R.id.description
-			    fillMaps.add(map);
-				
+				map.put("description", problema.getString("descricao")); // And this in R.id.description
+				fillMaps.add(map);
+
 			}
 			SimpleAdapter adapter = new SimpleAdapter(this, fillMaps, R.layout.adater_problema, from, to);
 			listaProb.setAdapter(adapter);
@@ -265,12 +295,20 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
-	public void onbuscarProblemaCategoria(JSONObject object) {
+	public void onBuscarProblemaCategoria(JSONObject object) {
 		// TODO Auto-generated method stub
-		
+		preencherLista(object);
+
+	}
+
+	@Override
+	public void onGetCategorias(JSONObject object) {
+		// TODO Auto-generated method stub
+		preencherCategorias(object);
+
 	}
 }

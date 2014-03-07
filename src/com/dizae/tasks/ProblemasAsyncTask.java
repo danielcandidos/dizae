@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 
 import com.dizae.database.ConexaoHttpClient;
 import com.dizae.models.entities.Problema;
+import com.dizae.tasks.ProblemasAsyncTask.ProblemasAction;
 
 public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 
@@ -18,6 +19,7 @@ public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 	private ConexaoHttpClient conexaoHttpClient;
 	private ProblemasAction action;
 	private Problema problema;
+	private int categoriaId;
 
 	public ProblemasAsyncTask(ProblemasListener listener,ProblemasAction action,Problema problema){
 		this.listener = listener;
@@ -30,6 +32,14 @@ public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 		this.listener = listener;
 		this.action = action;
 		conexaoHttpClient = new ConexaoHttpClient();	
+	}
+
+	public ProblemasAsyncTask(ProblemasListener listener,ProblemasAction action,int categoriaId) {
+		// TODO Auto-generated constructor stub
+		this.listener = listener;
+		this.action = action;
+		this.categoriaId =categoriaId;
+		conexaoHttpClient = new ConexaoHttpClient();
 	}
 
 	@Override
@@ -56,6 +66,14 @@ public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 			actionString = "todos";
 		}
 		
+		if(action == ProblemasAction.BUSCAR_CATEGORIAS){
+			actionString = "categorias";
+		}
+		
+		if(action == ProblemasAction.BUSCAR_POR_CATEGORIA){
+			actionString = "categoria/"+categoriaId;
+		}
+		
 		
 		try {
 			String stringResult = conexaoHttpClient.executaHttpGet(URL_STRING+actionString);
@@ -80,6 +98,12 @@ public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 		if(action==ProblemasAction.BUSCAR_TODOS){
 			listener.onBuscarProblemaTodos(result);
 		}
+		if(action==ProblemasAction.BUSCAR_CATEGORIAS){
+			listener.onGetCategorias(result);
+		}		
+		if(action==ProblemasAction.BUSCAR_POR_CATEGORIA){
+			listener.onBuscarProblemaCategoria(result);
+		}
 		
 	}
 
@@ -88,11 +112,12 @@ public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 		void onEditarProblema(JSONObject object);
 		void onBuscarProblema(JSONObject object);
 		void onBuscarProblemaTodos(JSONObject object);
-		void onbuscarProblemaCategoria(JSONObject object);
+		void onBuscarProblemaCategoria(JSONObject object);
+		void onGetCategorias(JSONObject object);
 	}
 
 	public enum ProblemasAction{
-		CASDASTRAR,EDITAR,BUSCAR,BUSCAR_TODOS,BUSCAR_CATEGORIA;
+		CASDASTRAR,EDITAR,BUSCAR,BUSCAR_TODOS,BUSCAR_POR_CATEGORIA,BUSCAR_CATEGORIAS;
 	}
 
 }
