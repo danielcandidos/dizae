@@ -52,7 +52,8 @@ public class ProblemasAsyncTask extends AsyncTask<Void, Void, JSONObject> {
 				actionString = actionString+"&categoria="+URLEncoder.encode(problema.getCategoria(),"UTF-8");
 				actionString = actionString+"&usuario="+1;
 				actionString = actionString+"&latitude="+problema.getLatitude();
-				actionString = actionString+"&longitude"+problema.getLongitude();
+				actionString = actionString+"&longitude="+problema.getLongitude();
+				actionString = actionString+"&foto="+problema.getFoto();
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

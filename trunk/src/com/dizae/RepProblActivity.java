@@ -1,8 +1,12 @@
 package com.dizae;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,6 +23,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint.Join;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -62,11 +67,15 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 	Problema problema;
 	UserDAO userDAO;
 	static String user;
+	
+	//locatizacao
+	double latitude, longitude;
 	// Sidebar Options
 	private TextView side_home, side_nova_ocorrencia, side_conf, side_user_perfil;
 	private HashMap<Integer, Integer> categoriaMap;
+	private String md5Image = "";
 
-	// Upload
+	// Upload	
 	int serverResponseCode = 0;
 	ProgressDialog dialog = null;
 	String upLoadServerUri = "http://ec2-54-200-36-55.us-west-2.compute.amazonaws.com/dizae/index.php/problemas/upload";
@@ -113,10 +122,8 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 
 			public void onClick(View v) {
 				
-				uploadFoto();
-				geolocalizar();
-
-				//registarProblema();
+				uploadFoto();		
+				
 			}
 		});
 
@@ -162,8 +169,9 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 			p.setTitulo(titulo);
 			p.setCategoria(categoria);
 			p.setDescricao(descricao);
-			p.setLongitude(0);
-			p.setLatitude(0);
+			p.setLongitude(longitude);
+			p.setLatitude(latitude);
+			p.setFoto(md5Image);
 
 
 			new ProblemasAsyncTask(this,ProblemasAction.CASDASTRAR,p).execute();
@@ -315,9 +323,13 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 
 			}
 		}).start();
+		
+			
 	}
 
 	private void tirarFoto(){
+		
+		geolocalizar();
 		File picsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 
 		File imageFile = new File(picsDir, "foto.jpg");	
@@ -389,13 +401,14 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 		preencherCategorias(object);
 	}
 
-	public int uploadFile(String sourceFileUri) {
+	public void uploadFile(String sourceFileUri) {
 
 
 		String fileName = sourceFileUri;
 
 		HttpURLConnection conn = null;
-		DataOutputStream dos = null;  
+		DataOutputStream dos = null;
+		InputStreamReader in = null;
 		String lineEnd = "\r\n";
 		String twoHyphens = "--";
 		String boundary = "*****";
@@ -417,7 +430,7 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 				}
 			}); 
 
-			return 0;
+			
 
 		}
 		else
@@ -438,8 +451,10 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 				conn.setRequestProperty("ENCTYPE", "multipart/form-data");
 				conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
 				conn.setRequestProperty("uploaded_file", fileName); 
-
+				
+				
 				dos = new DataOutputStream(conn.getOutputStream());
+								
 
 				dos.writeBytes(twoHyphens + boundary + lineEnd); 
 				dos.writeBytes("Content-Disposition: form-data; name='uploaded_file';filename='"
@@ -471,8 +486,11 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 
 				// Responses from the server (code and message)
 				serverResponseCode = conn.getResponseCode();
-				String serverResponseMessage = conn.getResponseMessage();
-
+				String serverResponseMessage = conn.getResponseMessage();				
+				
+				
+				
+				
 				Log.i("uploadFile", "HTTP Response is : " 
 						+ serverResponseMessage + ": " + serverResponseCode);
 
@@ -480,14 +498,10 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 
 					runOnUiThread(new Runnable() {
 						public void run() {
-
-							String msg = "File Upload Completed.\n\n See uploaded file here : \n\n"
-									+" http://www.androidexample.com/media/uploads/"
-									+uploadFileName;
-
-							//messageText.setText(msg);
+							
 							Toast.makeText(RepProblActivity.this, "File Upload Complete.", 
 									Toast.LENGTH_SHORT).show();
+							
 						}
 					});                
 				}    
@@ -496,6 +510,22 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 				fileInputStream.close();
 				dos.flush();
 				dos.close();
+				
+				in = new InputStreamReader((InputStream) conn.getContent());
+				BufferedReader buffIn = new BufferedReader(in);
+				
+				StringBuffer response = new StringBuffer();
+				String line;
+				do{
+					line = buffIn.readLine();
+				 	response.append(line+"\n");
+				}while(line!=null);
+				
+				JSONObject responseJson = new JSONObject(response.toString());
+				
+				if(!responseJson.getBoolean("erro")){
+					md5Image = responseJson.getString("arquivo");
+				}
 
 			} catch (MalformedURLException ex) {
 
@@ -527,7 +557,9 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 						+ e.getMessage(), e);  
 			}
 			dialog.dismiss();       
-			return serverResponseCode; 
+			if(serverResponseCode==200){
+				registarProblema();
+			}
 
 		} // End else block 
 
@@ -591,7 +623,9 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 		// Retorna a localização com a data da última localização conhecida
 		Location location = locationManager.getLastKnownLocation(provider);
 
-		Toast.makeText(RepProblActivity.this, "Lat:"+location.getLatitude()+"; Long:"+location.getLongitude(), Toast.LENGTH_LONG).show();
+		//Toast.makeText(RepProblActivity.this, "Lat:"+location.getLatitude()+"; Long:"+location.getLongitude(), Toast.LENGTH_LONG).show();
+		latitude = location.getLatitude();
+		longitude = location.getLongitude();
 
 	}
 }
