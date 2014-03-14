@@ -1,10 +1,21 @@
 package com.dizae;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,6 +28,10 @@ import com.dizae.tasks.ProblemasAsyncTask.ProblemasListener;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
@@ -25,6 +40,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -38,8 +54,10 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 	//Layout
 	private DrawerLayout mDrawerLayout;
 	private LinearLayout mDrawerList;
+	JSONArray problemas;
 	//
 	private ListView listaProb;
+	private SimpleAdapter adapter;
 	private Spinner aspn;
 	private List<String> listaSelecione = new ArrayList<String>();
 	private ArrayList<String> listaTemp = new ArrayList<String>();
@@ -67,7 +85,7 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 
 
 		//Método do Spinner para capturar o item selecionado
-		
+
 
 		//Listagem dos titulos dos problemas com retorno (falho) do banco		
 		////listaTemp = proDAO.getListarTudo();
@@ -95,6 +113,18 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 
 	}
 
+	private Drawable LoadImageFromWebOperations(String url){
+		try
+		{
+			InputStream is = (InputStream) new URL(url).getContent();
+			Drawable d = Drawable.createFromStream(is, "src");
+			return d;
+		}catch (Exception e) {
+			System.out.println("Exc="+e);
+			return null;
+		}
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -110,7 +140,7 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 		i.putExtras(params);
 		startActivity(i);
 	}
-	
+
 	private void mostrarProblema(int problemaId){
 		Intent i = new Intent(getApplicationContext(), VisProblActivity.class);
 		i.putExtra("problemaId",problemaId);
@@ -231,14 +261,14 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 
 		try {
 			categoriaMap = new HashMap<Integer,Integer>();
-			
-			
+
+
 			listaSelecione.clear();
 			listaSelecione.add("todos");
 			JSONArray categorias = object.getJSONArray("categorias");
-			
+
 			for (int i =0;i<categorias.length();i++) {
-				
+
 				JSONObject categoria = categorias.getJSONObject(i);
 				categoriaMap.put(i+1,categoria.getInt("id") );
 				listaSelecione.add(categoria.getString("nome"));
@@ -251,12 +281,12 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 			ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
 			spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 			aspn.setAdapter(spinnerArrayAdapter);
-			
+
 			aspn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {		 
 				@Override
 				public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
 					if(posicao>0){
-						
+
 						buscarPorcategoria(categoriaMap.get(posicao));
 					}else{
 						buscarProblemas();
@@ -278,31 +308,91 @@ public class HomeRankingActivity extends Activity implements ProblemasListener {
 	protected void buscarPorcategoria(Integer integer) {
 		// TODO Auto-generated method stub
 		new ProblemasAsyncTask(this, ProblemasAction.BUSCAR_POR_CATEGORIA, integer).execute();
-		
+
 	}
 
 	private void preencherLista(JSONObject object) {
 		// TODO Auto-generated method stub
 		problemaMap = new HashMap<Integer,Integer>();
 		listaProb.setAdapter(null);
-		String[] from = new String[] { "title", "description" };
+		String[] from = new String[] { "title", "description"};
 		int[] to = new int[] { R.id.title, R.id.description };
+		
 		List<HashMap<String, Object>> fillMaps = new ArrayList<HashMap<String, Object>>();
 		try {
-			JSONArray problemas = object.getJSONArray("problemas");
+			problemas = object.getJSONArray("problemas");
 			for (int i =0;i<problemas.length();i++) {
-				
-				
+
+
 				JSONObject problema = problemas.getJSONObject(i);
 				problemaMap.put(i,problema.getInt("id"));
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				map.put("title", problema.getString("titulo")); // This will be shown in R.id.title
 				map.put("description", problema.getString("descricao")); // And this in R.id.description
+				//map.put("image", LoadImageFromWebOperations("http://ec2-54-200-36-55.us-west-2.compute.amazonaws.com/dizae/uploads/"+problema.getString("foto")));
+				
 				fillMaps.add(map);
 
 			}
-			SimpleAdapter adapter = new SimpleAdapter(this, fillMaps, R.layout.adater_problema, from, to);
+			
+			adapter = new SimpleAdapter(this, fillMaps, R.layout.adater_problema, from, to);
 			listaProb.setAdapter(adapter);
+			
+			
+			
+			
+			new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					for (int i =0;i<problemas.length();i++) {
+						try {
+							JSONObject problema = problemas.getJSONObject(i);
+							View v =adapter.getView(i, null, listaProb);
+							ImageView iv = (ImageView)v.findViewById(R.id.image);
+							URL url = new URL("http://ec2-54-200-36-55.us-west-2.compute.amazonaws.com/dizae/uploads/"+problema.getString("foto"));
+					        //try this url = "http://0.tqn.com/d/webclipart/1/0/5/l/4/floral-icon-5.jpg"
+					        HttpGet httpRequest = null;
+
+					        httpRequest = new HttpGet(url.toURI());
+
+					        HttpClient httpclient = new DefaultHttpClient();
+					        HttpResponse response = (HttpResponse) httpclient
+					                .execute(httpRequest);
+
+					        HttpEntity entity = response.getEntity();
+					        BufferedHttpEntity b_entity = new BufferedHttpEntity(entity);
+					        InputStream input = b_entity.getContent();
+
+					        Bitmap bitmap = BitmapFactory.decodeStream(input);
+					        
+					        //bitmap.setHeight(75);
+					        //bitmap.setWidth(75);
+
+					        iv.setImageBitmap(bitmap);
+					        iv.refreshDrawableState();
+					        
+					        //iv.setSystemUiVisibility(true);
+					        
+							
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (URISyntaxException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}						
+						
+						
+					}					
+				}
+			}).start();
+			
+			
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
