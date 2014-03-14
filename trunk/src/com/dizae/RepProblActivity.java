@@ -24,6 +24,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint.Join;
+import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -369,6 +370,8 @@ public class RepProblActivity extends Activity implements ProblemasListener{
 		}
 
 	}
+	
+	
 
 	@Override
 	public void onEditarProblema(JSONObject object) {
